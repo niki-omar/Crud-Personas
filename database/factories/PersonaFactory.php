@@ -18,8 +18,10 @@ class PersonaFactory extends Factory
             'apellido' => $this->faker->lastName(),
             'cedula' => $this->faker-> numberBetween(0,9999999999),
             'correo' => $this->faker->email(),
+            'telefono' => $this->faker-> numberBetween(0,999999999),
+            'telefonoTipo' => $this->faker->randomElement(['C', 'M']),
             'direccion' => $this->faker->address(),
-            'sexo' => $this->faker->randomElement(['male', 'female']),
+            'sexo' => $this->faker->randomElement(['M', 'F']),
             'descripcion' => $this->faker->paragraph(),
         ];
     }

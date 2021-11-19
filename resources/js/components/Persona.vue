@@ -40,7 +40,7 @@
                                 placeholder="Nombres"
                             />
                             <span class="text-danger" v-if="errores.nombre">
-                                {{ errores.nombre[0] }}
+                                El Nombre es obligatorio
                             </span>
                         </div>
                         <div class="my-4">
@@ -53,7 +53,7 @@
                                 placeholder="Apellidos"
                             />
                             <span class="text-danger" v-if="errores.apellido">
-                                {{ errores.apellido[0] }}
+                                El Apellido es obligatorio
                             </span>
                         </div>
                         <div class="my-4">
@@ -66,7 +66,7 @@
                                 placeholder="Cedula"
                             />
                             <span class="text-danger" v-if="errores.cedula">
-                                {{ errores.cedula[0] }}
+                                La Cedula es obligatoria
                             </span>
                         </div>
 
@@ -79,10 +79,49 @@
                                 id="correo"
                                 placeholder="Correo"
                             />
-                            <span class="text-danger" v-if="errores.correo">{{
-                                errores.correo[0]
-                            }}</span>
+                            <span class="text-danger" v-if="errores.correo">
+                                El Correo es obligatorio
+                            </span>
                         </div>
+                        <!-- TELEFONO -->
+                        <!-- <div class="my-4">
+                            <label for="telefono">Telefono</label>
+                            <input
+                                v-model="persona.telefono"
+                                type="number"
+                                class="form-control"
+                                id="telefono"
+                                placeholder="telefono"
+                            />
+                            <span class="text-danger" v-if="errores.telefono">{{
+                                errores.telefono[0]
+                            }}</span>
+                        </div> -->
+                        <form class="row row-cols-lg-auto g-3 align-items-center">
+                            <div class="col-12">
+                                <label class="visually-hidden" for="inlineFormInputGroupUsername">Numero de telefono</label>
+                                <input
+                                min="1"
+                                max="5"
+                                v-model="persona.telefono"
+                                type="integer"
+                                class="form-control"
+                                id="telefono"
+                                placeholder="Telefono">
+                            </div>
+                        <div class="col-12 my-2">
+                            <select v-model="persona.telefonoTipo">
+                            <option disabled value="">Seleccion su tipo de telefono</option>
+                            <option value="C">Convencional</option>
+                            <option value="M">Movil</option>
+                            <option>Cuantico</option>
+                            </select>
+                        </div>
+                        <span class="text-danger" v-if="errores.telefono">{{
+                                errores.telefono[0]
+                            }}</span>
+                        </form>
+                        <!-- TELEFONO -->
                         <div class="my-4">
                             <label for="direccion">Direccion</label>
                             <input
@@ -111,7 +150,7 @@
                                 {{ errores.sexo[0] }}
                             </span>
                         </div> -->
-                        <!-- ----------------   v-if="1"  --->
+                        <!-- ----------------   --->
                         <label for="sexo">Sexo</label> <br />
                         <div>
                         <input type="radio" id="one" value="M" v-model="persona.sexo">
@@ -161,6 +200,7 @@
                     <th scope="col">Apellidos</th>
                     <th scope="col">Cedula</th>
                     <th scope="col">Correo</th>
+                    <th scope="col">Telefono</th>
                     <th scope="col">Direccion</th>
                     <th scope="col">Sexo</th>
                     <th scope="col">Descripcion</th>
@@ -174,6 +214,7 @@
                     <td>{{ per.apellido }}</td>
                     <td>{{ per.cedula }}</td>
                     <td>{{ per.correo }}</td>
+                    <td>{{ per.telefono }}</td>
                     <td>{{ per.direccion }}</td>
                     <td>{{ per.sexo }}</td>
                     <td>{{ per.descripcion }}</td>
@@ -210,11 +251,13 @@ export default {
                 apellido: "",
                 cedula: "",
                 correo: "",
+                telefono: "",
+                telefonoTipo: "",
                 direccion: "",
                 sexo: "",
                 descripcion: "",
             },
-
+            // selected: '',
             id: 0,
             modificar: true,
             modal: 0,
@@ -261,6 +304,8 @@ export default {
                 this.persona.apellido = data.apellido;
                 this.persona.cedula = data.cedula;
                 this.persona.correo = data.correo;
+                this.persona.telefono = data.telefono;
+                this.persona.telefonoTipo = data.telefonoTipo;
                 this.persona.direccion = data.direccion;
                 this.persona.sexo = data.sexo;
                 this.persona.descripcion = data.descripcion;
@@ -271,6 +316,8 @@ export default {
                 this.persona.apellido = "";
                 this.persona.cedula = "";
                 this.persona.correo = "";
+                this.persona.telefono = "";
+                this.persona.telefonoTipo = "";
                 this.persona.direccion = "";
                 this.persona.sexo = "";
                 this.persona.descripcion = "";

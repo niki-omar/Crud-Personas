@@ -64,13 +64,6 @@ class PersonaController extends Controller
         ]);
         $persona -> update($request ->all());
     }
-    public function messages()
-    {
-        return [
-            'nombre.required' => 'Es necesario un titulo',
-            'apellido.required' => 'Es necesario un apellido',
-        ];
-    }
     /**
      * Remove the specified resource from storage.
      *

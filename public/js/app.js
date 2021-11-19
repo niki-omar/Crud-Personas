@@ -2287,6 +2287,47 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2295,10 +2336,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         apellido: "",
         cedula: "",
         correo: "",
+        telefono: "",
+        telefonoTipo: "",
         direccion: "",
         sexo: "",
         descripcion: ""
       },
+      // selected: '',
       id: 0,
       modificar: true,
       modal: 0,
@@ -2427,6 +2471,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.persona.apellido = data.apellido;
         this.persona.cedula = data.cedula;
         this.persona.correo = data.correo;
+        this.persona.telefono = data.telefono;
+        this.persona.telefonoTipo = data.telefonoTipo;
         this.persona.direccion = data.direccion;
         this.persona.sexo = data.sexo;
         this.persona.descripcion = data.descripcion;
@@ -2437,6 +2483,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.persona.apellido = "";
         this.persona.cedula = "";
         this.persona.correo = "";
+        this.persona.telefono = "";
+        this.persona.telefonoTipo = "";
         this.persona.direccion = "";
         this.persona.sexo = "";
         this.persona.descripcion = "";
@@ -39190,9 +39238,7 @@ var render = function () {
               _vm.errores.nombre
                 ? _c("span", { staticClass: "text-danger" }, [
                     _vm._v(
-                      "\n                            " +
-                        _vm._s(_vm.errores.nombre[0]) +
-                        "\n                        "
+                      "\n                            El Nombre es obligatorio\n                        "
                     ),
                   ])
                 : _vm._e(),
@@ -39232,9 +39278,7 @@ var render = function () {
               _vm.errores.apellido
                 ? _c("span", { staticClass: "text-danger" }, [
                     _vm._v(
-                      "\n                            " +
-                        _vm._s(_vm.errores.apellido[0]) +
-                        "\n                        "
+                      "\n                            El Apellido es obligatorio\n                        "
                     ),
                   ])
                 : _vm._e(),
@@ -39268,9 +39312,7 @@ var render = function () {
               _vm.errores.cedula
                 ? _c("span", { staticClass: "text-danger" }, [
                     _vm._v(
-                      "\n                            " +
-                        _vm._s(_vm.errores.cedula[0]) +
-                        "\n                        "
+                      "\n                            La Cedula es obligatoria\n                        "
                     ),
                   ])
                 : _vm._e(),
@@ -39303,10 +39345,113 @@ var render = function () {
               _vm._v(" "),
               _vm.errores.correo
                 ? _c("span", { staticClass: "text-danger" }, [
-                    _vm._v(_vm._s(_vm.errores.correo[0])),
+                    _vm._v(
+                      "\n                            El Correo es obligatorio\n                        "
+                    ),
                   ])
                 : _vm._e(),
             ]),
+            _vm._v(" "),
+            _c(
+              "form",
+              { staticClass: "row row-cols-lg-auto g-3 align-items-center" },
+              [
+                _c("div", { staticClass: "col-12" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "visually-hidden",
+                      attrs: { for: "inlineFormInputGroupUsername" },
+                    },
+                    [_vm._v("Numero de telefono")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.persona.telefono,
+                        expression: "persona.telefono",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      min: "1",
+                      max: "5",
+                      type: "integer",
+                      id: "telefono",
+                      placeholder: "Telefono",
+                    },
+                    domProps: { value: _vm.persona.telefono },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.persona, "telefono", $event.target.value)
+                      },
+                    },
+                  }),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12 my-2" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.persona.telefonoTipo,
+                          expression: "persona.telefonoTipo",
+                        },
+                      ],
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.persona,
+                            "telefonoTipo",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                      },
+                    },
+                    [
+                      _c("option", { attrs: { disabled: "", value: "" } }, [
+                        _vm._v("Seleccion su tipo de telefono"),
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "C" } }, [
+                        _vm._v("Convencional"),
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "M" } }, [
+                        _vm._v("Movil"),
+                      ]),
+                      _vm._v(" "),
+                      _c("option", [_vm._v("Cuantico")]),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _vm.errores.telefono
+                  ? _c("span", { staticClass: "text-danger" }, [
+                      _vm._v(_vm._s(_vm.errores.telefono[0])),
+                    ])
+                  : _vm._e(),
+              ]
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "my-4" }, [
               _c("label", { attrs: { for: "direccion" } }, [
@@ -39495,6 +39640,8 @@ var render = function () {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(per.correo))]),
             _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(per.telefono))]),
+            _vm._v(" "),
             _c("td", [_vm._v(_vm._s(per.direccion))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(per.sexo))]),
@@ -39554,6 +39701,8 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Cedula")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Correo")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Telefono")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Direccion")]),
         _vm._v(" "),
