@@ -2287,32 +2287,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -39372,8 +39346,32 @@ var render = function () {
                 : _vm._e(),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "my-4" }, [
-              _c("label", { attrs: { for: "sexo" } }, [_vm._v("Sexo")]),
+            _c("label", { attrs: { for: "sexo" } }, [_vm._v("Sexo")]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.persona.sexo,
+                    expression: "persona.sexo",
+                  },
+                ],
+                attrs: { type: "radio", id: "one", value: "M" },
+                domProps: { checked: _vm._q(_vm.persona.sexo, "M") },
+                on: {
+                  change: function ($event) {
+                    return _vm.$set(_vm.persona, "sexo", "M")
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "one" } }, [_vm._v("Masculino")]),
+              _vm._v(" "),
+              _c("br"),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -39384,18 +39382,16 @@ var render = function () {
                     expression: "persona.sexo",
                   },
                 ],
-                staticClass: "form-control",
-                attrs: { type: "text", id: "sexo", placeholder: "sexo" },
-                domProps: { value: _vm.persona.sexo },
+                attrs: { type: "radio", id: "two", value: "F" },
+                domProps: { checked: _vm._q(_vm.persona.sexo, "F") },
                 on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.persona, "sexo", $event.target.value)
+                  change: function ($event) {
+                    return _vm.$set(_vm.persona, "sexo", "F")
                   },
                 },
               }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "two" } }, [_vm._v("Femenino")]),
               _vm._v(" "),
               _vm.errores.sexo
                 ? _c("span", { staticClass: "text-danger" }, [

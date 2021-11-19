@@ -98,7 +98,7 @@
                                 >{{ errores.direccion[0] }}</span
                             >
                         </div>
-                        <div class="my-4">
+                        <!-- <div class="my-4">
                             <label for="sexo">Sexo</label>
                             <input
                                 v-model="persona.sexo"
@@ -110,45 +110,19 @@
                             <span class="text-danger" v-if="errores.sexo">
                                 {{ errores.sexo[0] }}
                             </span>
-                        </div>
-                        <!-- ----------------- -->
-                        <!-- <label for="sexo">Sexo</label>
-                        <div class="form-check" v-if="1">
-                            <input
-                                v-model="persona.sexo"
-                                class="form-check-input"
-                                type="radio"
-                                name="sexo"
-                                id="sexo"
-                            />
-                             <span class="text-danger" v-if="errores.sexo">
-                                {{ errores.sexo[0] }}
-                            </span>
-                            <label
-                                class="form-check-label"
-                                for="Masculino"
-                                >Masculino
-                            </label>
-                        </div>
-                        <div class="form-check" v-else>
-                            <input
-                                v-model="persona.sexo"
-                                class="form-check-input"
-                                type="radio"
-                                name="femenino"
-                                id="femenino"
-                                checked
-                            />
-                             <span class="text-danger" v-if="errores.sexo">
-                                {{ errores.sexo[0] }}
-                            </span>
-                            <label
-                                class="form-check-label"
-                                for="femenino"
-                                >Femenino</label
-                            >
                         </div> -->
-
+                        <!-- ----------------   v-if="1"  --->
+                        <label for="sexo">Sexo</label> <br />
+                        <div>
+                        <input type="radio" id="one" value="M" v-model="persona.sexo">
+                        <label for="one">Masculino</label>
+                        <br>
+                        <input type="radio" id="two" value="F" v-model="persona.sexo">
+                        <label for="two">Femenino</label>
+                            <span class="text-danger" v-if="errores.sexo">
+                                {{ errores.sexo[0] }}
+                            </span>
+                        </div>
                         <!-- ------------------ -->
                         <div class="my-4">
                             <label for="descripcion">Nota</label>
@@ -240,6 +214,7 @@ export default {
                 sexo: "",
                 descripcion: "",
             },
+
             id: 0,
             modificar: true,
             modal: 0,
