@@ -2328,6 +2328,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2348,6 +2363,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       modal: 0,
       tituloModal: "",
       personas: [],
+      telefono: [],
       errores: {}
     };
   },
@@ -6965,7 +6981,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.mostrar {\n    display: list-item;\n    opacity: 1;\n    background: rgba(6, 7, 10, 0.548);\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ninput{\n  display: block;\n}\n.mostrar {\n  display: list-item;\n  opacity: 1;\n  background: rgba(6, 7, 10, 0.548);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -39183,7 +39199,7 @@ var render = function () {
           },
         },
       },
-      [_c("i", { staticClass: "fas fa-plus-square" }), _vm._v(" Nuevo\n    ")]
+      [_c("i", { staticClass: "fas fa-plus-square" }), _vm._v(" Nuevo\n  ")]
     ),
     _vm._v(" "),
     _c("div", { staticClass: "modal", class: { mostrar: _vm.modal } }, [
@@ -39205,7 +39221,7 @@ var render = function () {
                   },
                 },
               },
-              [_vm._v("\n                        ×\n                    ")]
+              [_vm._v("\n            ×\n          ")]
             ),
           ]),
           _vm._v(" "),
@@ -39238,7 +39254,7 @@ var render = function () {
               _vm.errores.nombre
                 ? _c("span", { staticClass: "text-danger" }, [
                     _vm._v(
-                      "\n                            El Nombre es obligatorio\n                        "
+                      "\n              El Nombre es obligatorio\n            "
                     ),
                   ])
                 : _vm._e(),
@@ -39278,7 +39294,7 @@ var render = function () {
               _vm.errores.apellido
                 ? _c("span", { staticClass: "text-danger" }, [
                     _vm._v(
-                      "\n                            El Apellido es obligatorio\n                        "
+                      "\n              El Apellido es obligatorio\n            "
                     ),
                   ])
                 : _vm._e(),
@@ -39297,7 +39313,13 @@ var render = function () {
                   },
                 ],
                 staticClass: "form-control",
-                attrs: { type: "number", id: "cedula", placeholder: "Cedula" },
+                attrs: {
+                  minlength: "10",
+                  maxlength: "10",
+                  type: "number",
+                  id: "cedula",
+                  placeholder: "Cedula",
+                },
                 domProps: { value: _vm.persona.cedula },
                 on: {
                   input: function ($event) {
@@ -39312,7 +39334,7 @@ var render = function () {
               _vm.errores.cedula
                 ? _c("span", { staticClass: "text-danger" }, [
                     _vm._v(
-                      "\n                            La Cedula es obligatoria\n                        "
+                      "\n              La Cedula es obligatoria\n            "
                     ),
                   ])
                 : _vm._e(),
@@ -39346,7 +39368,7 @@ var render = function () {
               _vm.errores.correo
                 ? _c("span", { staticClass: "text-danger" }, [
                     _vm._v(
-                      "\n                            El Correo es obligatorio\n                        "
+                      "\n              El Correo es obligatorio\n            "
                     ),
                   ])
                 : _vm._e(),
@@ -39377,8 +39399,8 @@ var render = function () {
                     ],
                     staticClass: "form-control",
                     attrs: {
-                      min: "1",
-                      max: "5",
+                      minlength: "10",
+                      maxlength: "10",
                       type: "integer",
                       id: "telefono",
                       placeholder: "Telefono",
@@ -39429,7 +39451,9 @@ var render = function () {
                     },
                     [
                       _c("option", { attrs: { disabled: "", value: "" } }, [
-                        _vm._v("Seleccion su tipo de telefono"),
+                        _vm._v(
+                          "\n                  Seleccion su tipo de telefono\n                "
+                        ),
                       ]),
                       _vm._v(" "),
                       _c("option", { attrs: { value: "C" } }, [
@@ -39541,9 +39565,9 @@ var render = function () {
               _vm.errores.sexo
                 ? _c("span", { staticClass: "text-danger" }, [
                     _vm._v(
-                      "\n                            " +
+                      "\n              " +
                         _vm._s(_vm.errores.sexo[0]) +
-                        "\n                        "
+                        "\n            "
                     ),
                   ])
                 : _vm._e(),
@@ -39594,11 +39618,7 @@ var render = function () {
                   },
                 },
               },
-              [
-                _vm._v(
-                  "\n                        Guardar\n                    "
-                ),
-              ]
+              [_vm._v("\n            Guardar\n          ")]
             ),
             _vm._v(" "),
             _c(
@@ -39612,11 +39632,7 @@ var render = function () {
                   },
                 },
               },
-              [
-                _vm._v(
-                  "\n                        Cancelar\n                    "
-                ),
-              ]
+              [_vm._v("\n            Cancelar\n          ")]
             ),
           ]),
         ]),
