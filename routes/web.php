@@ -24,3 +24,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::apiResource ('/personas',PersonaController::class);
 Route::apiResource('/personas', App\Http\Controllers\PersonaController::class);
+Route::resource('/telefonos', App\Http\Controllers\TelefonoController::class);

@@ -13,8 +13,6 @@ class Persona extends Model
         'apellido',
         'cedula',
         'correo',
-        'telefono',
-        'telefonoTipo',
         'direccion',
         'sexo',
         'descripcion',

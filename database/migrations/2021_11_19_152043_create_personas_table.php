@@ -20,10 +20,16 @@ class CreatePersonasTable extends Migration
             $table -> string ('cedula')->nullable();
             $table -> string ('correo',100)->nullable();
             $table -> string ('telefono')->nullable();
-            $table -> string ('telefonoTipo')->nullable();
             $table -> text ('direccion',100)->nullable();
             $table -> string ('sexo')->nullable();
             $table -> text ('descripcion')->nullable();
+            $table->timestamps();
+        });
+        Schema::create('telefonos', function (Blueprint $table) {
+            $table->id();
+            $table -> unsignedBigInteger ('persona_id')->references('id')->no('personas');
+            $table -> string ('telefono',10);
+            $table -> char('tipo_telefono', 1);;
             $table->timestamps();
         });
     }
