@@ -6,7 +6,6 @@
         <!-- Trigger the modal with a button -->
         <button
             @click="
-                modificar = false;
                 abrirModal();
             "
             type="button"
@@ -366,6 +365,7 @@
 
 <script>
 import TelefonoPersona from "./TelefonoPersona.vue";
+import TablaPersona from "./TablaPersona.vue";
 export default {
     data() {
         return {
@@ -386,7 +386,7 @@ export default {
             // },
 
             id: 0,
-            modificar: true,
+            // modificar: false,
             modal: 0,
             tituloModal: "",
             personas: [],
@@ -409,48 +409,78 @@ export default {
         // completeTask(index, task) {
         //     this.listTask[index].completed = !tellist.completed;
         // },
-        // listar() {
-        //    axios.get("/personas").
-        //    then( response =>{
-        //         this.personas = response.data;
-        //    });
-        //     // this.telefonos = res.data;
-        // },
-        // listarTelefonos() {
-        //     axios.get("/telefonos").
-        //     then( response=> {
-        //           this.telefonos = response.data;
-        //     })
-        // },
+        listar() {
+           axios.get("/personas").
+           then( response =>{
+                this.personas = response.data;
+           });
+            // this.telefonos = res.data;
+        },
+        listarTelefonos() {
+            axios.get("/telefonos").
+            then( response=> {
+                  this.telefonos = response.data;
+            })
+        },
         // eliminar(id) {
         //     axios.delete("/personas" + id).
         //     then(response=>{
         //          this.listar();
         //     })
         // },
-        // async guardar() {
-        //     try {
-        //         if (this.modificar) {
-        //             const res = await axios.put("/personas/" + this.id, this.persona);
-        //         }
-        //         else {
-        //             const res = await axios.post("/personas", this.persona);
-        //         }
-        //         this.cerrarModal();
-        //         this.listar();
-        //     }
-        //     catch (error) {
-        //         console.log("probandoCatch");
-        //         if (error.response.data) {
-        //             this.errores = error.response.data.errors;
-        //         }
-        //         console.log(error.response.data);
-        //     }
-        // },
+       async guardar() {
+            try {
+                if (this.modificar) {
+                    const res = await axios.put("/personas/" + this.persona.id);
+                }
+                else {
+                    const res = await axios.post("/personas", this.persona);
+                }
+                this.cerrarModal();
+                this.listar();
+            }
+            //  try {
+            //     if (this.modificar) {
+            //     axios.put
+            //         then(response=>{
+            //             // this.persona.id = this.data.id;
+            //             ("/personas/" + this.id, this.persona);
+            //         });
+            //     }
+                // else {
+                //     axios.post
+                //     then(response=>{
+                //         ("/personas", this.persona);
+                //     })
+                //     // const res = await axios.post("/personas", this.persona);
+                // }
+                // this.cerrarModal();
+                // this.listar();
+
+            catch (error) {
+                console.log("probandoCatch");
+                if (error.response.data) {
+                    this.errores = error.response.data.errors;
+                }
+                console.log(error.response.data);
+            }
+        },
         abrirModal(data = {}) {
             this.modal = 1;
-            if (this.modificar) {
-                this.id = 0;
+            if(this.modificar){
+                this.tituloModal="Editar Usuario";
+                this.persona.nombre=data.nombre;
+                this.persona.apellido=data.apellido;
+                this.persona.cedula=data.cedula;
+                this.persona.correo=data.correo;
+                this.persona.direccion=data.direccion;
+                this.persona.sexo=data.sexo;
+                this.persona.descripcion =data.descripcion;
+                }
+                else
+                // if(this.modificar)
+                {
+                this.id=0;
                 this.tituloModal = "Crear Usuario";
                 this.persona.nombre = "";
                 this.persona.apellido = "";
@@ -467,11 +497,16 @@ export default {
             this.modal = 0;
         },
     },
-    created() {
+    mounted() {
+        let vue=this;
         this.listar();
-        // this.listarTelefonos();
+        this.listarTelefonos();
     },
-    components: { TelefonoPersona }
+    components:
+    {
+        TelefonoPersona,
+        TablaPersona
+    }
 };
 </script>
 

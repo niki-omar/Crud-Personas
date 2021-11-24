@@ -54,7 +54,7 @@ class PersonaController extends Controller
      * @param  \App\Models\Persona  $persona
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Persona $persona)
+    public function update(Request $request,Persona $persona)
     {  //borrando PersonaRequest y dejando solo Request el codigo funciona
         $request ->validate([
             'nombre'=>'required',
@@ -63,6 +63,7 @@ class PersonaController extends Controller
             'correo'=>'required',
         ]);
         $persona -> update($request ->all());
+        // return $request;
     }
     /**
      * Remove the specified resource from storage.
