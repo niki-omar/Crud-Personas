@@ -32,7 +32,7 @@ class TelefonoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Persona  $telefono
+     * @param  \App\Models\Telefono  $telefono
      * @return \Illuminate\Http\Response
      */
     public function show(Telefono $telefono)
@@ -49,7 +49,7 @@ class TelefonoController extends Controller
      */
     public function update(Request $request, Telefono $telefono)
     {  //borrando PersonaRequest y dejando solo Request el codigo funciona
-
+        $telefono -> update($request ->all());
     }
     /**
      * Remove the specified resource from storage.
@@ -59,6 +59,6 @@ class TelefonoController extends Controller
      */
     public function destroy(Telefono $telefono)
     {
-
+        $telefono->delete();
     }
 }

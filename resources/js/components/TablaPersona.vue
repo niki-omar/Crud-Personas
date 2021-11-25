@@ -15,7 +15,6 @@
                             &times;
                         </button>
                     </div>
-
                     <div class="modal-body">
                         <div class="my-4">
                             <label for="nombre">Nombre</label>
@@ -73,7 +72,9 @@
                             </span>
                         </div>
                         <!-- TELEFONO -->
-
+                          <telefonos
+                             :telefonos="telefonos" >
+                        </telefonos>
                         <!-- <table class="table">
                         <thead>
                             <tr>
@@ -293,66 +294,67 @@
                 </div>
             </div>
         </div>
-<table class="table table-hover table-sm">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombres</th>
-                    <th scope="col">Apellidos</th>
-                    <th scope="col">Cedula</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Telefono</th>
-                    <th scope="col">Direccion</th>
-                    <th scope="col">Sexo</th>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col" colspan="2" class="text-center">Accion</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="per in personas" :key="per.id">
-                    <th scope="row">{{ per.id }}</th>
-                    <td>{{ per.nombre }}</td>
-                    <td>{{ per.apellido }}</td>
-                    <td>{{ per.cedula }}</td>
-                    <td>{{ per.correo }}</td>
-                    <td>{{ per.telefono }}</td>
-                    <td>{{ per.direccion }}</td>
-                    <td>{{ per.sexo }}</td>
-                    <td>{{ per.descripcion }}</td>
-                    <td>
-                        <!-- editar -->
-                        <button
-                            @click="
-                            modificar=true;
-                            abrirModal(per)"
-                            class="btn btn-primary"
+        <!-- Recorrido de tabla para el index  -->
+        <table class="table table-hover table-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Cedula</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col" colspan="2" class="text-center">Accion</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        <tr v-for="per in personas" :key="per.id">
+                                    <th scope="row">{{ per.id }}</th>
+                                        <td>{{ per.nombre }}</td>
+                                        <td>{{ per.apellido }}</td>
+                                        <td>{{ per.cedula }}</td>
+                                        <td>{{ per.correo }}</td>
+                                        <td>{{ per.telefono }}</td>
+                                        <td>{{ per.direccion }}</td>
+                                        <td>{{ per.sexo }}</td>
+                                        <td>{{ per.descripcion }}</td>
+                                            <td>
+                                                <!-- editar -->
+                                                <button
+                                                    @click="
+                                                    modificar=true;
+                                                    abrirModal(per)"
+                                                    class="btn btn-primary"
 
-                        >
-                            <i class="fas fa-edit"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <!-- borrar -->
-                        <button
-                            @click="eliminar(per.id)"
-                            class="btn btn-danger"
-                        >
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
+                                                >
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                    </td>
+                                            <td>
+                                                <!-- borrar -->
+                                                <button
+                                                    @click="eliminar(per.id)"
+                                                    class="btn btn-danger"
+                                                >
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </td>
+                        </tr>
+                    </tbody>
         </table>
-
 </div>
 </template>
 <script>
+import TelefonoPersona from "./TelefonoPersona.vue";
 export default {
     // name: "Task",
     data() {
         return {
              persona: {
-                id: null,
+                // id: null,
                 nombre: "",
                 apellido: "",
                 cedula: "",
@@ -363,7 +365,13 @@ export default {
                 sexo: "",
                 descripcion: "",
             },
-            id: 0,
+            telefono:{
+                id:null,
+                persona_id:"",
+                telefono:"",
+                tipo_telefono:"",
+            },
+            // id: 0,
             modificar: true,
             modal: 0,
             tituloModal: "",
@@ -384,7 +392,7 @@ export default {
             axios.get("/telefonos").
             then( response=> {
                   this.telefonos = response.data;
-            })
+            });
         },
         eliminar(id) {
             axios.delete("/personas/" + id).
@@ -395,9 +403,7 @@ export default {
         },
        async guardar() {
             try {
-                // console.log(this.persona.id);
                 if (this.modificar) {
-                    //  const res = await axios.put("/personas/" + this.id, this.persona);
                     const res = await axios.put("/personas/" + this.persona.id,this.persona);
                 }
                 else {
@@ -406,6 +412,18 @@ export default {
                 this.cerrarModal();
                 this.listar();
             }
+            // try {
+            //     // console.log(this.persona.id);
+            //     if (this.modificar) {
+            //         //  const res = await axios.put("/personas/" + this.id, this.persona);
+            //         const res = await axios.put("/personas/" + this.persona.id,this.persona);
+            //     }
+            //     else {
+            //         const res = await axios.post("/personas", this.persona);
+            //     }
+            //     this.cerrarModal();
+            //     this.listar();
+            // }
             // try {
             //     if (this.modificar) {
             //     axios.put
@@ -431,7 +449,12 @@ export default {
                 console.log(error.response.data);
             }
         },
+
         abrirModal(data) {
+                // this.res = data.id,
+                // this.restel=data.telefono;
+                // console.log(this.res + this.restel +" - "+"desde Consola");
+
             this.modal = 1;
             if(this.modificar){
                 this.tituloModal="Editar Usuario";
@@ -440,6 +463,8 @@ export default {
                 this.persona.apellido=data.apellido;
                 this.persona.cedula=data.cedula;
                 this.persona.correo=data.correo;
+                // this.telefono.persona_id=data.persona.id;
+
                 this.persona.direccion=data.direccion;
                 this.persona.sexo=data.sexo;
                 this.persona.descripcion =data.descripcion;
@@ -447,7 +472,8 @@ export default {
                 }
                 else
                 {
-                 this.tituloModal = "Crear Usuario";
+                this.id=0;
+                this.tituloModal = "Crear Usuario";
                 this.persona.nombre = "";
                 this.persona.apellido = "";
                 this.persona.cedula = "";
@@ -463,15 +489,26 @@ export default {
             this.modal = 0;
         },
         mounted() {
+
+             let vue=this;
             // this.listar();
-            // listarTelefonos();
+            this.listarTelefonos();
         }
+
     },
+    components:
+    {
+        TelefonoPersona
+
+    },
+    // FUNCIONA PERO ESTA PARTE SE REFERENCIA DOS VECES DEBIDO A QUE TELEFONOS ESTA AGREGADO...
     props: {
-        // modificar,
+        telefonos:{
+
+        },
         personas:{
 
-        }
+        },
     }
 };
 </script>

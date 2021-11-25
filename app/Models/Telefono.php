@@ -13,6 +13,10 @@ class Telefono extends Model
         'telefono',
         'tipo_telefono'
     ];
+    // RELACION UNO A MUCHOS INVERSA
+    public function persona(){
+        return $this->belongsTo('app\Models\Persona');
+    }
 }
 // class Post extends Model
 // {

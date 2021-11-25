@@ -2,7 +2,6 @@
     <div>
         <h1 class="text-center">Crud Personas</h1>
         <hr />
-
         <!-- Trigger the modal with a button -->
         <button
             @click="
@@ -88,137 +87,10 @@
                             </span>
                         </div>
                         <!-- TELEFONO -->
-
-                        <!-- <table class="table">
-                        <thead>
-                            <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                        </table> -->
-                        <!-- <form class="row row-cols-lg-auto g-3 align-items-center">
-              <div class="col-12">
-                <label
-                  class="visually-hidden"
-                  for="inlineFormInputGroupUsername"
-                  >Numero de telefono</label
-                >
-                <input
-                  minlength="10"
-                  maxlength="10"
-                  v-model="persona.telefono"
-                  type="integer"
-                  class="form-control"
-                  id="telefono"
-                  placeholder="Telefono"
-                />
-              </div>
-
-            </form> -->
-                        <!-- <label for="telefono">Telefonos</label>
-                    <div class="row align-items-start">
-                        <div class="col">
-                        <input
-                            type="number"
-                            v-model="persona.telefono"
-                            class="form-control"
-                            placeholder="Agregar Telefono"
-                        />
-                        </div>
-
-                        <div class="input-group-append">
-                            <button
-                                v-on:click="addTask()"
-                                class="btn btn-success btn-lg"
-                            >
-                               <i class="fas fa-plus-circle"></i>
-                            </button>
-                        </div>
-
-                        </div>
-                        <br />
-                        <p v-if="persona.telefono.length == 0">Sin numero aun!</p>
-                        <ul class="list-group">
-                            <li
-                                v-for="(telefono, index) of listTask"
-                                :key="index"
-                                class="
-                                    list-group-item
-                                    d-flex
-                                    justify-content-between
-                                "
-                            >
-                                <span
-                                    class="cursor"
-                                    v-bind:class="{
-                                        'text-success': telefono.completed,
-                                    }"
-                                    v-on:click="completeTask(telefono, telefono)"
-                                >
-                                    <i
-                                        v-bind:class="[
-                                            telefono.completed
-                                                ? 'far fa-check-circle'
-                                                : 'far fa-circle',
-                                        ]"
-                                    ></i>
-                                </span>
-                                <span
-                                    v-bind:class="{
-                                        'line-through': telefono.completed,
-                                    }"
-                                    >{{ telefono.name }}</span
-                                >
-                                <span
-                                    class="text-danger cursor"
-                                    v-on:click="deleteTask(index)"
-                                >
-                                    <i class="fas fa-trash-alt"></i>
-                                </span>
-                            </li>
-                        </ul> -->
-                        <telefonos
+                         <telefonos
                              :telefonos="telefonos" >
                         </telefonos>
-
-                        <!-- /TELEFONO -->
-                        <!-- TIPO DE TELEFONO -->
-                        <!-- <div class="col-12 my-2">
-                            <select v-model="persona.telefonoTipo">
-                                <option disabled value="">
-                                    Seleccion su tipo de telefono
-                                </option>
-                                <option value="C">Convencional</option>
-                                <option value="M">Movil</option>
-                                <option>Cuantico</option>
-                            </select>
-                        </div> -->
-                        <!-- <span class="text-danger" v-if="errores.telefono">{{
-                            errores.telefono[0]
-                        }}</span> -->
-                        <!-- /tipo de telefono -->
+                        <!-- ------------DIRECCION------->
                         <div class="my-4">
                             <label for="direccion">Direccion</label>
                             <input
@@ -234,21 +106,7 @@
                                 >{{ errores.direccion[0] }}</span
                             >
                         </div>
-                        <!-- CAMPOS -->
-                        <!-- <div class="my-4">
-                            <label for="sexo">Sexo</label>
-                            <input
-                                v-model="persona.sexo"
-                                type="text"
-                                class="form-control"
-                                id="sexo"
-                                placeholder="sexo"
-                            />
-                            <span class="text-danger" v-if="errores.sexo">
-                                {{ errores.sexo[0] }}
-                            </span>
-                        </div> -->
-                        <!-- ----------------   --->
+                        <!-- ------------SEXO------->
                         <label for="sexo">Sexo</label> <br />
                         <div>
                             <input
@@ -312,54 +170,6 @@
         :personas="personas"
         >
         </tablapersona>
-        <!-- <table class="table table-hover table-sm">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombres</th>
-                    <th scope="col">Apellidos</th>
-                    <th scope="col">Cedula</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Telefono</th>
-                    <th scope="col">Direccion</th>
-                    <th scope="col">Sexo</th>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col" colspan="2" class="text-center">Accion</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="per in personas" :key="per.id">
-                    <th scope="row">{{ per.id }}</th>
-                    <td>{{ per.nombre }}</td>
-                    <td>{{ per.apellido }}</td>
-                    <td>{{ per.cedula }}</td>
-                    <td>{{ per.correo }}</td>
-                    <td>{{ per.telefono }}</td>
-                    <td>{{ per.direccion }}</td>
-                    <td>{{ per.sexo }}</td>
-                    <td>{{ per.descripcion }}</td>
-                    <td>
-                        <button
-                            @click="
-                                modificar = true;
-                                abrirModal(per);
-                            "
-                            class="btn btn-primary"
-                        >
-                            <i class="fas fa-edit"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <button
-                            @click="eliminar(per.id)"
-                            class="btn btn-danger"
-                        >
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table> -->
     </div>
 </template>
 
@@ -380,13 +190,14 @@ export default {
                 sexo: "",
                 descripcion: "",
             },
-            // telefono:{
-            //     telefono="",
-            //     telefonoTipo="",
-            // },
-
-            id: 0,
-            // modificar: false,
+            telefono:{
+                id:null,
+                persona_id:"",
+                telefono:"",
+                tipo_telefono:"",
+            },
+            // id: 0,
+            modificar: false,
             modal: 0,
             tituloModal: "",
             personas: [],
@@ -395,20 +206,6 @@ export default {
         };
     },
     methods: {
-        // addTask() {
-        //     const taskObj = {
-        //         name: this.persona.telefono,
-        //         completed: false,
-        //     };
-        //     this.listTask.push(taskObj);
-        //     this.telefono = "";
-        // },
-        // deleteTask(index) {
-        //     this.listTask.splice(index, 1);
-        // },
-        // completeTask(index, task) {
-        //     this.listTask[index].completed = !tellist.completed;
-        // },
         listar() {
            axios.get("/personas").
            then( response =>{
@@ -465,7 +262,7 @@ export default {
                 console.log(error.response.data);
             }
         },
-        abrirModal(data = {}) {
+        abrirModal(data) {
             this.modal = 1;
             if(this.modificar){
                 this.tituloModal="Editar Usuario";
@@ -478,7 +275,6 @@ export default {
                 this.persona.descripcion =data.descripcion;
                 }
                 else
-                // if(this.modificar)
                 {
                 this.id=0;
                 this.tituloModal = "Crear Usuario";

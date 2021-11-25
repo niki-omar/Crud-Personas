@@ -2261,196 +2261,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2467,12 +2277,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         sexo: "",
         descripcion: ""
       },
-      // telefono:{
-      //     telefono="",
-      //     telefonoTipo="",
-      // },
-      id: 0,
-      // modificar: false,
+      telefono: {
+        id: null,
+        persona_id: "",
+        telefono: "",
+        tipo_telefono: ""
+      },
+      // id: 0,
+      modificar: false,
       modal: 0,
       tituloModal: "",
       personas: [],
@@ -2481,20 +2293,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
-    // addTask() {
-    //     const taskObj = {
-    //         name: this.persona.telefono,
-    //         completed: false,
-    //     };
-    //     this.listTask.push(taskObj);
-    //     this.telefono = "";
-    // },
-    // deleteTask(index) {
-    //     this.listTask.splice(index, 1);
-    // },
-    // completeTask(index, task) {
-    //     this.listTask[index].completed = !tellist.completed;
-    // },
     listar: function listar() {
       var _this = this;
 
@@ -2574,8 +2372,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee, null, [[0, 14]]);
       }))();
     },
-    abrirModal: function abrirModal() {
-      var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    abrirModal: function abrirModal(data) {
       this.modal = 1;
 
       if (this.modificar) {
@@ -2587,20 +2384,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.persona.direccion = data.direccion;
         this.persona.sexo = data.sexo;
         this.persona.descripcion = data.descripcion;
-      } else // if(this.modificar)
-        {
-          this.id = 0;
-          this.tituloModal = "Crear Usuario";
-          this.persona.nombre = "";
-          this.persona.apellido = "";
-          this.persona.cedula = "";
-          this.persona.correo = ""; // this.telefono.telefono = "";
-          // this.telefono.telefonoTipo = "";
+      } else {
+        this.id = 0;
+        this.tituloModal = "Crear Usuario";
+        this.persona.nombre = "";
+        this.persona.apellido = "";
+        this.persona.cedula = "";
+        this.persona.correo = ""; // this.telefono.telefono = "";
+        // this.telefono.telefonoTipo = "";
 
-          this.persona.direccion = "";
-          this.persona.sexo = "";
-          this.persona.descripcion = "";
-        }
+        this.persona.direccion = "";
+        this.persona.sexo = "";
+        this.persona.descripcion = "";
+      }
     },
     cerrarModal: function cerrarModal() {
       this.modal = 0;
@@ -2632,6 +2428,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _TelefonoPersona_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TelefonoPersona.vue */ "./resources/js/components/TelefonoPersona.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2986,12 +2783,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   // name: "Task",
   data: function data() {
     return {
       persona: {
-        id: null,
+        // id: null,
         nombre: "",
         apellido: "",
         cedula: "",
@@ -3002,7 +2801,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         sexo: "",
         descripcion: ""
       },
-      id: 0,
+      telefono: {
+        id: null,
+        persona_id: "",
+        telefono: "",
+        tipo_telefono: ""
+      },
+      // id: 0,
       modificar: true,
       modal: 0,
       tituloModal: "",
@@ -3093,6 +2898,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     abrirModal: function abrirModal(data) {
+      // this.res = data.id,
+      // this.restel=data.telefono;
+      // console.log(this.res + this.restel +" - "+"desde Consola");
       this.modal = 1;
 
       if (this.modificar) {
@@ -3101,11 +2909,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.persona.nombre = data.nombre;
         this.persona.apellido = data.apellido;
         this.persona.cedula = data.cedula;
-        this.persona.correo = data.correo;
+        this.persona.correo = data.correo; // this.telefono.persona_id=data.persona.id;
+
         this.persona.direccion = data.direccion;
         this.persona.sexo = data.sexo;
         this.persona.descripcion = data.descripcion;
       } else {
+        this.id = 0;
         this.tituloModal = "Crear Usuario";
         this.persona.nombre = "";
         this.persona.apellido = "";
@@ -3121,12 +2931,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     cerrarModal: function cerrarModal() {
       this.modal = 0;
     },
-    mounted: function mounted() {// this.listar();
-      // listarTelefonos();
+    mounted: function mounted() {
+      var vue = this; // this.listar();
+
+      this.listarTelefonos();
     }
   },
+  components: {
+    TelefonoPersona: _TelefonoPersona_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  // FUNCIONA PERO ESTA PARTE SE REFERENCIA DOS VECES DEBIDO A QUE TELEFONOS ESTA AGREGADO...
   props: {
-    // modificar,
+    telefonos: {},
     personas: {}
   }
 });
@@ -40454,283 +40270,296 @@ var render = function () {
             ),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [
-            _c("div", { staticClass: "my-4" }, [
-              _c("label", { attrs: { for: "nombre" } }, [_vm._v("Nombre")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.persona.nombre,
-                    expression: "persona.nombre",
+          _c(
+            "div",
+            { staticClass: "modal-body" },
+            [
+              _c("div", { staticClass: "my-4" }, [
+                _c("label", { attrs: { for: "nombre" } }, [_vm._v("Nombre")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.persona.nombre,
+                      expression: "persona.nombre",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", id: "nombre", placeholder: "Nombres" },
+                  domProps: { value: _vm.persona.nombre },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.persona, "nombre", $event.target.value)
+                    },
                   },
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", id: "nombre", placeholder: "Nombres" },
-                domProps: { value: _vm.persona.nombre },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.persona, "nombre", $event.target.value)
-                  },
-                },
-              }),
-              _vm._v(" "),
-              _vm.errores.nombre
-                ? _c("span", { staticClass: "text-danger" }, [
-                    _vm._v(
-                      "\n                                El Nombre es obligatorio\n                            "
-                    ),
-                  ])
-                : _vm._e(),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "my-4" }, [
-              _c("label", { attrs: { for: "apellido" } }, [
-                _vm._v("Apellidos"),
+                }),
+                _vm._v(" "),
+                _vm.errores.nombre
+                  ? _c("span", { staticClass: "text-danger" }, [
+                      _vm._v(
+                        "\n                                El Nombre es obligatorio\n                            "
+                      ),
+                    ])
+                  : _vm._e(),
               ]),
               _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.persona.apellido,
-                    expression: "persona.apellido",
+              _c("div", { staticClass: "my-4" }, [
+                _c("label", { attrs: { for: "apellido" } }, [
+                  _vm._v("Apellidos"),
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.persona.apellido,
+                      expression: "persona.apellido",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    id: "apellido",
+                    placeholder: "Apellidos",
                   },
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "apellido",
-                  placeholder: "Apellidos",
-                },
-                domProps: { value: _vm.persona.apellido },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.persona, "apellido", $event.target.value)
+                  domProps: { value: _vm.persona.apellido },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.persona, "apellido", $event.target.value)
+                    },
                   },
-                },
-              }),
-              _vm._v(" "),
-              _vm.errores.apellido
-                ? _c("span", { staticClass: "text-danger" }, [
-                    _vm._v(
-                      "\n                                El Apellido es obligatorio\n                            "
-                    ),
-                  ])
-                : _vm._e(),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "my-4" }, [
-              _c("label", { attrs: { for: "cedula" } }, [_vm._v("Cedula")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.persona.cedula,
-                    expression: "persona.cedula",
-                  },
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  minlength: "10",
-                  maxlength: "10",
-                  type: "number",
-                  id: "cedula",
-                  placeholder: "Cedula",
-                },
-                domProps: { value: _vm.persona.cedula },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.persona, "cedula", $event.target.value)
-                  },
-                },
-              }),
-              _vm._v(" "),
-              _vm.errores.cedula
-                ? _c("span", { staticClass: "text-danger" }, [
-                    _vm._v(
-                      "\n                                La Cedula es obligatoria\n                            "
-                    ),
-                  ])
-                : _vm._e(),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "my-4" }, [
-              _c("label", { attrs: { for: "correo" } }, [_vm._v("Correo")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.persona.correo,
-                    expression: "persona.correo",
-                  },
-                ],
-                staticClass: "form-control",
-                attrs: { type: "email", id: "correo", placeholder: "Correo" },
-                domProps: { value: _vm.persona.correo },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.persona, "correo", $event.target.value)
-                  },
-                },
-              }),
-              _vm._v(" "),
-              _vm.errores.correo
-                ? _c("span", { staticClass: "text-danger" }, [
-                    _vm._v(
-                      "\n                                El Correo es obligatorio\n                            "
-                    ),
-                  ])
-                : _vm._e(),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "my-4" }, [
-              _c("label", { attrs: { for: "direccion" } }, [
-                _vm._v("Direccion"),
+                }),
+                _vm._v(" "),
+                _vm.errores.apellido
+                  ? _c("span", { staticClass: "text-danger" }, [
+                      _vm._v(
+                        "\n                                El Apellido es obligatorio\n                            "
+                      ),
+                    ])
+                  : _vm._e(),
               ]),
               _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.persona.direccion,
-                    expression: "persona.direccion",
+              _c("div", { staticClass: "my-4" }, [
+                _c("label", { attrs: { for: "cedula" } }, [_vm._v("Cedula")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.persona.cedula,
+                      expression: "persona.cedula",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    minlength: "10",
+                    maxlength: "10",
+                    type: "number",
+                    id: "cedula",
+                    placeholder: "Cedula",
                   },
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  id: "direccion",
-                  placeholder: "direccion",
-                },
-                domProps: { value: _vm.persona.direccion },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.persona, "direccion", $event.target.value)
+                  domProps: { value: _vm.persona.cedula },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.persona, "cedula", $event.target.value)
+                    },
                   },
-                },
-              }),
+                }),
+                _vm._v(" "),
+                _vm.errores.cedula
+                  ? _c("span", { staticClass: "text-danger" }, [
+                      _vm._v(
+                        "\n                                La Cedula es obligatoria\n                            "
+                      ),
+                    ])
+                  : _vm._e(),
+              ]),
               _vm._v(" "),
-              _vm.errores.direccion
-                ? _c("span", { staticClass: "text-danger" }, [
-                    _vm._v(_vm._s(_vm.errores.direccion[0])),
-                  ])
-                : _vm._e(),
-            ]),
-            _vm._v(" "),
-            _c("label", { attrs: { for: "sexo" } }, [_vm._v("Sexo")]),
-            _vm._v(" "),
-            _c("br"),
-            _vm._v(" "),
-            _c("div", [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.persona.sexo,
-                    expression: "persona.sexo",
+              _c("div", { staticClass: "my-4" }, [
+                _c("label", { attrs: { for: "correo" } }, [_vm._v("Correo")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.persona.correo,
+                      expression: "persona.correo",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "email", id: "correo", placeholder: "Correo" },
+                  domProps: { value: _vm.persona.correo },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.persona, "correo", $event.target.value)
+                    },
                   },
-                ],
-                attrs: { type: "radio", id: "one", value: "M" },
-                domProps: { checked: _vm._q(_vm.persona.sexo, "M") },
-                on: {
-                  change: function ($event) {
-                    return _vm.$set(_vm.persona, "sexo", "M")
-                  },
-                },
-              }),
+                }),
+                _vm._v(" "),
+                _vm.errores.correo
+                  ? _c("span", { staticClass: "text-danger" }, [
+                      _vm._v(
+                        "\n                                El Correo es obligatorio\n                            "
+                      ),
+                    ])
+                  : _vm._e(),
+              ]),
               _vm._v(" "),
-              _c("label", { attrs: { for: "one" } }, [_vm._v("Masculino")]),
+              _c("telefonos", { attrs: { telefonos: _vm.telefonos } }),
+              _vm._v(" "),
+              _c("div", { staticClass: "my-4" }, [
+                _c("label", { attrs: { for: "direccion" } }, [
+                  _vm._v("Direccion"),
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.persona.direccion,
+                      expression: "persona.direccion",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    id: "direccion",
+                    placeholder: "direccion",
+                  },
+                  domProps: { value: _vm.persona.direccion },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.persona, "direccion", $event.target.value)
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _vm.errores.direccion
+                  ? _c("span", { staticClass: "text-danger" }, [
+                      _vm._v(_vm._s(_vm.errores.direccion[0])),
+                    ])
+                  : _vm._e(),
+              ]),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "sexo" } }, [_vm._v("Sexo")]),
               _vm._v(" "),
               _c("br"),
               _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.persona.sexo,
-                    expression: "persona.sexo",
+              _c("div", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.persona.sexo,
+                      expression: "persona.sexo",
+                    },
+                  ],
+                  attrs: { type: "radio", id: "one", value: "M" },
+                  domProps: { checked: _vm._q(_vm.persona.sexo, "M") },
+                  on: {
+                    change: function ($event) {
+                      return _vm.$set(_vm.persona, "sexo", "M")
+                    },
                   },
-                ],
-                attrs: { type: "radio", id: "two", value: "F" },
-                domProps: { checked: _vm._q(_vm.persona.sexo, "F") },
-                on: {
-                  change: function ($event) {
-                    return _vm.$set(_vm.persona, "sexo", "F")
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "one" } }, [_vm._v("Masculino")]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.persona.sexo,
+                      expression: "persona.sexo",
+                    },
+                  ],
+                  attrs: { type: "radio", id: "two", value: "F" },
+                  domProps: { checked: _vm._q(_vm.persona.sexo, "F") },
+                  on: {
+                    change: function ($event) {
+                      return _vm.$set(_vm.persona, "sexo", "F")
+                    },
                   },
-                },
-              }),
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "two" } }, [_vm._v("Femenino")]),
+                _vm._v(" "),
+                _vm.errores.sexo
+                  ? _c("span", { staticClass: "text-danger" }, [
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s(_vm.errores.sexo[0]) +
+                          "\n                            "
+                      ),
+                    ])
+                  : _vm._e(),
+              ]),
               _vm._v(" "),
-              _c("label", { attrs: { for: "two" } }, [_vm._v("Femenino")]),
-              _vm._v(" "),
-              _vm.errores.sexo
-                ? _c("span", { staticClass: "text-danger" }, [
-                    _vm._v(
-                      "\n                                " +
-                        _vm._s(_vm.errores.sexo[0]) +
-                        "\n                            "
-                    ),
-                  ])
-                : _vm._e(),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "my-4" }, [
-              _c("label", { attrs: { for: "descripcion" } }, [_vm._v("Nota")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.persona.descripcion,
-                    expression: "persona.descripcion",
+              _c("div", { staticClass: "my-4" }, [
+                _c("label", { attrs: { for: "descripcion" } }, [
+                  _vm._v("Nota"),
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.persona.descripcion,
+                      expression: "persona.descripcion",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    id: "descripcion",
+                    placeholder: "Nota",
                   },
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text", id: "descripcion", placeholder: "Nota" },
-                domProps: { value: _vm.persona.descripcion },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.persona, "descripcion", $event.target.value)
+                  domProps: { value: _vm.persona.descripcion },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.persona, "descripcion", $event.target.value)
+                    },
                   },
-                },
-              }),
-              _vm._v(" "),
-              _vm.errores.descripcion
-                ? _c("span", { staticClass: "text-danger" }, [
-                    _vm._v(_vm._s(_vm.errores.descripcion[0])),
-                  ])
-                : _vm._e(),
-            ]),
-          ]),
+                }),
+                _vm._v(" "),
+                _vm.errores.descripcion
+                  ? _c("span", { staticClass: "text-danger" }, [
+                      _vm._v(_vm._s(_vm.errores.descripcion[0])),
+                    ])
+                  : _vm._e(),
+              ]),
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("div", { staticClass: "modal-footer" }, [
             _c(
@@ -40903,7 +40732,7 @@ var render = function () {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(telf.telefono))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(telf.tipoTelefono))]),
+            _c("td", [_vm._v(_vm._s(telf.tipo_telefono))]),
             _vm._v(" "),
             _c("td", [
               _c(

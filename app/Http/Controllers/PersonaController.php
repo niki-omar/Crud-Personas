@@ -44,6 +44,7 @@ class PersonaController extends Controller
      */
     public function show(Persona $persona)
     {
+        $persona->load('telefonos');
         return $persona;
     }
 

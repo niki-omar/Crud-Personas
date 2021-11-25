@@ -13,7 +13,7 @@
                 <tr v-for="telf in telefonos" :key="telf.persona_id">
                     <th scope="row">{{ telf.id }}</th>
                     <td>{{ telf.telefono }}</td>
-                    <td>{{ telf.tipoTelefono }}</td>
+                    <td>{{ telf.tipo_telefono }}</td>
                     <td>
                         <button
                             @click="
