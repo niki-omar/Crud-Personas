@@ -1,9 +1,10 @@
 <template>
 <div>
+    <!-- MODAL -->
     <div class="modal" :class="{ mostrar: modal }">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
-                    <!-- Modal content-->
+
                     <div class="modal-header">
                         <h4 class="modal-title">{{ tituloModal }}</h4>
                         <button
@@ -71,7 +72,7 @@
                                 El Correo es obligatorio
                             </span>
                         </div>
-                        <!-- TELEFONO -->
+
                         <div class="my-4">
                             <label for="telefono">Telefono</label>
                             <input
@@ -104,21 +105,7 @@
                                 >{{ errores.direccion[0] }}</span
                             >
                         </div>
-                        <!-- CAMPOS -->
-                        <!-- <div class="my-4">
-                            <label for="sexo">Sexo</label>
-                            <input
-                                v-model="persona.sexo"
-                                type="text"
-                                class="form-control"
-                                id="sexo"
-                                placeholder="sexo"
-                            />
-                            <span class="text-danger" v-if="errores.sexo">
-                                {{ errores.sexo[0] }}
-                            </span>
-                        </div> -->
-                        <!-- ----------------   --->
+
                         <label for="sexo">Sexo</label> <br />
                         <div>
                             <input
@@ -140,7 +127,7 @@
                                 {{ errores.sexo[0] }}
                             </span>
                         </div>
-                        <!-- ------------------ -->
+
                         <div class="my-4">
                             <label for="descripcion">Nota</label>
                             <input
@@ -163,6 +150,76 @@
                             class="btn btn-success"
                             data-dismiss="modal"
                             @click="guardar()"
+                        >
+                            Guardar
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                            @click="cerrarModal()"
+                        >
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="modal" :class="{ mostrar: modalTelefono }">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">{{ tituloModal }}</h4>
+                        <button
+                            @click="cerrarModal()"
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                        >
+                            &times;
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="my-4">
+                            <label for="telefono">¿Deseas agregar un nuevo Numero de telefono?</label>
+                            <input
+                                v-model="telefono.telefono"
+                                type="email"
+                                class="form-control my-4"
+                                id="telefono"
+                                placeholder="telefono"
+                            />
+                             <p class="" for="tipoTelefono">Tipo de telefono</p>
+                            <input
+                                type="radio"
+                                id="one"
+                                value="M"
+                                v-model="telefono.tipo_telefono"
+                            />
+                            <label for="one">Movil</label>
+                            <br />
+                            <input
+                                type="radio"
+                                id="two"
+                                value="C"
+                                v-model="telefono.tipo_telefono"
+                            />
+                            <label for="two">Convencional</label>
+
+                            <span class="text-danger" v-if="errores.telefono">
+                                El Correo es obligatorio
+                            </span>
+                        </div>
+
+                        <!-- /TELEFONO -->
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-success"
+                            data-dismiss="modal"
+                            @click="guardarTelefono()"
                         >
                             Guardar
                         </button>
@@ -221,14 +278,12 @@
                                             <button
                                                     @click="
                                                     modificar=true;
-                                                    abrirModalTelefono(per)
-
+                                                    abrirModalTelefono(per.id)
                                                     "
                                                     class="btn btn-primary"
-
                                                 > Agregar
                                                     <i class="fas fa-phone"></i>
-                                                </button>
+                                            </button>
                                         </td>
                                         <td>
                                                 <!-- borrar -->
@@ -256,8 +311,6 @@ export default {
                 apellido: "",
                 cedula: "",
                 correo: "",
-                // telefono: "",
-                // telefonoTipo: "",
                 direccion: "",
                 sexo: "",
                 descripcion: "",
@@ -272,6 +325,7 @@ export default {
             // id: 0,
             modificar: true,
             modal: 0,
+            modalTelefono:0,
             tituloModal: "",
             // personas: [],
             errores: {},
@@ -297,13 +351,33 @@ export default {
             })
 
         },
+        async guardarTelefono() {
+            try{
+                if(this.modificar){
+                    axios.post("/telefonos/").
+                    then(response=>{
+                        this.telefono
+                    });
+                    this.cerrarModal();
+                    this.listar();
+                }
+                } catch(error){
+                    console.log("Consola.log Catch");
+                    if (error.response.data) {
+                        this.errores = error.response.data.errors;
+                    }
+                    console.log(error.response.data);
+                }
+        },
        async guardar() {
             try {
                 if (this.modificar) {
                     const res = await axios.put("/personas/" + this.persona.id,this.persona);
+                    // const res2 = await axios.put("/telefonos/" + this.persona_id,this.telefono);
                 }
                 else {
                     const res = await axios.post("/personas", this.persona);
+                    //  const res2 = await axios.put("/telefonos/",this.telefono);
                 }
                 this.cerrarModal();
                 this.listar();
@@ -347,6 +421,7 @@ export default {
         },
 
         listarTelefonos(persona_id) {
+            // console.log(persona_id);
             // console.log(`Entré a la funcion ${persona_id}`)
             axios.get("/telefonos/"+persona_id).
             then( response=> {
@@ -356,46 +431,14 @@ export default {
             });
 
         },
-            abrirModalTelefono(data) {
-                // this.res = data.id,
-                // this.restel=data.telefono;
-                // console.log(this.res + this.restel +" - "+"desde Consola");
-            this.modal = 1;
-            if(this.modificar){
-                this.tituloModal="Modificar telefono";
-                this.persona.id=data.id;
-                this.persona.nombre=data.nombre;
-                this.persona.apellido=data.apellido;
-                this.persona.cedula=data.cedula;
-                this.persona.correo=data.correo;
-                // this.telefono.persona_id=data.persona.id;
+        abrirModalTelefono(persona_id) {
+                console.log(persona_id);
+                this.modalTelefono = 1;
+                // this.telefono = "1234";
+            //  this.listarTelefonos(persona_id.id);
 
-                this.persona.direccion=data.direccion;
-                this.persona.sexo=data.sexo;
-                this.persona.descripcion =data.descripcion;
-                this.listarTelefonos(data.id);
-
-                }
-                else
-                {
-                this.id=0;
-                this.tituloModal = "Agregar numero de telefono ";
-                this.persona.nombre = "";
-                this.persona.apellido = "";
-                this.persona.cedula = "";
-                this.persona.correo = "";
-                    // this.telefono.telefono = "";
-                    // this.telefono.telefonoTipo = "";
-                this.persona.direccion = "";
-                this.persona.sexo = "";
-                this.persona.descripcion = "";
-            }
         },
         abrirModal(data) {
-                // this.res = data.id,
-                // this.restel=data.telefono;
-                // console.log(this.res + this.restel +" - "+"desde Consola");
-
             this.modal = 1;
             if(this.modificar){
                 this.tituloModal="Editar Usuario";
@@ -429,6 +472,7 @@ export default {
         },
         cerrarModal() {
             this.modal = 0;
+            this.modalTelefono = 0;
         },
         mounted()
         {
@@ -453,3 +497,8 @@ export default {
     }
 };
 </script>
+<style>
+/* p.tipoTelf{
+    text-align: center;
+} */
+</style>

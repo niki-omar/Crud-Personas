@@ -2681,6 +2681,61 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   // name: "Task",
@@ -2692,8 +2747,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         apellido: "",
         cedula: "",
         correo: "",
-        // telefono: "",
-        // telefonoTipo: "",
         direccion: "",
         sexo: "",
         descripcion: "",
@@ -2708,6 +2761,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       // id: 0,
       modificar: true,
       modal: 0,
+      modalTelefono: 0,
       tituloModal: "",
       // personas: [],
       errores: {}
@@ -2734,111 +2788,118 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this2.listar();
       });
     },
-    guardar: function guardar() {
+    guardarTelefono: function guardarTelefono() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var res, _res;
-
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
+                try {
+                  if (_this3.modificar) {
+                    axios.post("/telefonos/").then(function (response) {
+                      _this3.telefono;
+                    });
 
-                if (!_this3.modificar) {
-                  _context.next = 7;
-                  break;
+                    _this3.cerrarModal();
+
+                    _this3.listar();
+                  }
+                } catch (error) {
+                  console.log("Consola.log Catch");
+
+                  if (error.response.data) {
+                    _this3.errores = error.response.data.errors;
+                  }
+
+                  console.log(error.response.data);
                 }
 
-                _context.next = 4;
-                return axios.put("/personas/" + _this3.persona.id, _this3.persona);
-
-              case 4:
-                res = _context.sent;
-                _context.next = 10;
-                break;
-
-              case 7:
-                _context.next = 9;
-                return axios.post("/personas", _this3.persona);
-
-              case 9:
-                _res = _context.sent;
-
-              case 10:
-                _this3.cerrarModal();
-
-                _this3.listar();
-
-                _context.next = 19;
-                break;
-
-              case 14:
-                _context.prev = 14;
-                _context.t0 = _context["catch"](0);
-                console.log("Consola.log Catch");
-
-                if (_context.t0.response.data) {
-                  _this3.errores = _context.t0.response.data.errors;
-                }
-
-                console.log(_context.t0.response.data);
-
-              case 19:
+              case 1:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 14]]);
+        }, _callee);
+      }))();
+    },
+    guardar: function guardar() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var res, _res;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+
+                if (!_this4.modificar) {
+                  _context2.next = 7;
+                  break;
+                }
+
+                _context2.next = 4;
+                return axios.put("/personas/" + _this4.persona.id, _this4.persona);
+
+              case 4:
+                res = _context2.sent;
+                _context2.next = 10;
+                break;
+
+              case 7:
+                _context2.next = 9;
+                return axios.post("/personas", _this4.persona);
+
+              case 9:
+                _res = _context2.sent;
+
+              case 10:
+                _this4.cerrarModal();
+
+                _this4.listar();
+
+                _context2.next = 19;
+                break;
+
+              case 14:
+                _context2.prev = 14;
+                _context2.t0 = _context2["catch"](0);
+                console.log("Consola.log Catch");
+
+                if (_context2.t0.response.data) {
+                  _this4.errores = _context2.t0.response.data.errors;
+                }
+
+                console.log(_context2.t0.response.data);
+
+              case 19:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 14]]);
       }))();
     },
     listarTelefonos: function listarTelefonos(persona_id) {
-      var _this4 = this;
+      var _this5 = this;
 
+      // console.log(persona_id);
       // console.log(`Entré a la funcion ${persona_id}`)
       axios.get("/telefonos/" + persona_id).then(function (response) {
-        _this4.persona.telefonos = response.data;
+        _this5.persona.telefonos = response.data;
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    abrirModalTelefono: function abrirModalTelefono(data) {
-      // this.res = data.id,
-      // this.restel=data.telefono;
-      // console.log(this.res + this.restel +" - "+"desde Consola");
-      this.modal = 1;
-
-      if (this.modificar) {
-        this.tituloModal = "Modificar telefono";
-        this.persona.id = data.id;
-        this.persona.nombre = data.nombre;
-        this.persona.apellido = data.apellido;
-        this.persona.cedula = data.cedula;
-        this.persona.correo = data.correo; // this.telefono.persona_id=data.persona.id;
-
-        this.persona.direccion = data.direccion;
-        this.persona.sexo = data.sexo;
-        this.persona.descripcion = data.descripcion;
-        this.listarTelefonos(data.id);
-      } else {
-        this.id = 0;
-        this.tituloModal = "Agregar numero de telefono ";
-        this.persona.nombre = "";
-        this.persona.apellido = "";
-        this.persona.cedula = "";
-        this.persona.correo = ""; // this.telefono.telefono = "";
-        // this.telefono.telefonoTipo = "";
-
-        this.persona.direccion = "";
-        this.persona.sexo = "";
-        this.persona.descripcion = "";
-      }
+    abrirModalTelefono: function abrirModalTelefono(persona_id) {
+      console.log(persona_id);
+      this.modalTelefono = 1; // this.telefono = "1234";
+      //  this.listarTelefonos(persona_id.id);
     },
     abrirModal: function abrirModal(data) {
-      // this.res = data.id,
-      // this.restel=data.telefono;
-      // console.log(this.res + this.restel +" - "+"desde Consola");
       this.modal = 1;
 
       if (this.modificar) {
@@ -2871,6 +2932,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     cerrarModal: function cerrarModal() {
       this.modal = 0;
+      this.modalTelefono = 0;
     },
     mounted: function mounted() {
       var vue = this; // this.listar();
@@ -7463,6 +7525,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.cursor {\n    cursor: pointer;\n}\n.line-through {\n    text-decoration: line-through;\n}\ninput {\n    display: block;\n}\n.mostrar {\n    display: list-item;\n    opacity: 1;\n    background: rgba(6, 7, 10, 0.548);\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TablaPersona.vue?vue&type=style&index=0&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TablaPersona.vue?vue&type=style&index=0&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* p.tipoTelf{\n    text-align: center;\n} */\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -39281,6 +39367,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TablaPersona.vue?vue&type=style&index=0&lang=css&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TablaPersona.vue?vue&type=style&index=0&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TablaPersona_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TablaPersona.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TablaPersona.vue?vue&type=style&index=0&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TablaPersona_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TablaPersona_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
 /*!****************************************************************************!*\
   !*** ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
@@ -39614,15 +39730,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _TablaPersona_vue_vue_type_template_id_10c2d126___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TablaPersona.vue?vue&type=template&id=10c2d126& */ "./resources/js/components/TablaPersona.vue?vue&type=template&id=10c2d126&");
 /* harmony import */ var _TablaPersona_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TablaPersona.vue?vue&type=script&lang=js& */ "./resources/js/components/TablaPersona.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _TablaPersona_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TablaPersona.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/TablaPersona.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
+;
 
 
 /* normalize component */
-;
-var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _TablaPersona_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _TablaPersona_vue_vue_type_template_id_10c2d126___WEBPACK_IMPORTED_MODULE_0__.render,
   _TablaPersona_vue_vue_type_template_id_10c2d126___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
@@ -39736,6 +39854,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Persona_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Persona.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Persona.vue?vue&type=style&index=0&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/TablaPersona.vue?vue&type=style&index=0&lang=css&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/TablaPersona.vue?vue&type=style&index=0&lang=css& ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_TablaPersona_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TablaPersona.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TablaPersona.vue?vue&type=style&index=0&lang=css&");
 
 
 /***/ }),
@@ -40627,6 +40758,162 @@ var render = function () {
       ]),
     ]),
     _vm._v(" "),
+    _c("div", { staticClass: "modal", class: { mostrar: _vm.modalTelefono } }, [
+      _c("div", { staticClass: "modal-dialog modal-dialog-scrollable" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _c("div", { staticClass: "modal-header" }, [
+            _c("h4", { staticClass: "modal-title" }, [
+              _vm._v(_vm._s(_vm.tituloModal)),
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                attrs: { type: "button", "data-dismiss": "modal" },
+                on: {
+                  click: function ($event) {
+                    return _vm.cerrarModal()
+                  },
+                },
+              },
+              [
+                _vm._v(
+                  "\n                            ×\n                        "
+                ),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "my-4" }, [
+              _c("label", { attrs: { for: "telefono" } }, [
+                _vm._v("¿Deseas agregar un nuevo Numero de telefono?"),
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.telefono.telefono,
+                    expression: "telefono.telefono",
+                  },
+                ],
+                staticClass: "form-control my-4",
+                attrs: {
+                  type: "email",
+                  id: "telefono",
+                  placeholder: "telefono",
+                },
+                domProps: { value: _vm.telefono.telefono },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.telefono, "telefono", $event.target.value)
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("p", { attrs: { for: "tipoTelefono" } }, [
+                _vm._v("Tipo de telefono"),
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.telefono.tipo_telefono,
+                    expression: "telefono.tipo_telefono",
+                  },
+                ],
+                attrs: { type: "radio", id: "one", value: "M" },
+                domProps: { checked: _vm._q(_vm.telefono.tipo_telefono, "M") },
+                on: {
+                  change: function ($event) {
+                    return _vm.$set(_vm.telefono, "tipo_telefono", "M")
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "one" } }, [_vm._v("Movil")]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.telefono.tipo_telefono,
+                    expression: "telefono.tipo_telefono",
+                  },
+                ],
+                attrs: { type: "radio", id: "two", value: "C" },
+                domProps: { checked: _vm._q(_vm.telefono.tipo_telefono, "C") },
+                on: {
+                  change: function ($event) {
+                    return _vm.$set(_vm.telefono, "tipo_telefono", "C")
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "two" } }, [_vm._v("Convencional")]),
+              _vm._v(" "),
+              _vm.errores.telefono
+                ? _c("span", { staticClass: "text-danger" }, [
+                    _vm._v(
+                      "\n                                El Correo es obligatorio\n                            "
+                    ),
+                  ])
+                : _vm._e(),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-success",
+                attrs: { type: "button", "data-dismiss": "modal" },
+                on: {
+                  click: function ($event) {
+                    return _vm.guardarTelefono()
+                  },
+                },
+              },
+              [
+                _vm._v(
+                  "\n                            Guardar\n                        "
+                ),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-secondary",
+                attrs: { type: "button", "data-dismiss": "modal" },
+                on: {
+                  click: function ($event) {
+                    return _vm.cerrarModal()
+                  },
+                },
+              },
+              [
+                _vm._v(
+                  "\n                            Cancelar\n                        "
+                ),
+              ]
+            ),
+          ]),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
     _c("table", { staticClass: "table table-hover table-sm" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -40679,7 +40966,7 @@ var render = function () {
                   on: {
                     click: function ($event) {
                       _vm.modificar = true
-                      _vm.abrirModalTelefono(per)
+                      _vm.abrirModalTelefono(per.id)
                     },
                   },
                 },

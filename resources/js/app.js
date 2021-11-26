@@ -23,6 +23,7 @@ Vue.component('persona', require('./components/Persona.vue').default);
 Vue.component('tablapersona', require('./components/TablaPersona.vue').default);
 Vue.component('telefonospersona', require('./components/TelefonoPersona.vue').default);
 
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

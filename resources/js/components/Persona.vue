@@ -17,7 +17,7 @@
         <div class="modal" :class="{ mostrar: modal }">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
-                    <!-- Modal content-->
+
                     <div class="modal-header">
                         <h4 class="modal-title">{{ tituloModal }}</h4>
                         <button
