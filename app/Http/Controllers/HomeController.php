@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // Viniendo de web.php, que es donde se guardan las rutas. como se explicaba esta nos mandaba
+        //al index. aqui le decimos al programa que nos retorne la vista "home".
+        // almacenada en views/home. no se toma en cuenta el .blade.php
         return view('home');
     }
 }

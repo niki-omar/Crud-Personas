@@ -9,16 +9,20 @@
                     <th scope="col" colspan="2" class="text-center">Accion</th>
                 </tr>
             </thead>
+            <!-- CUANDO ENTRE EL METODO EDITAR POR PERSONA DEBE DE MOSTRAR LA INFORMACION DEL
+            TELEFONO... -->
             <tbody>
-                <tr v-for="telf in telefonos" :key="telf.persona_id">
+
+                <tr v-for="telf in telefonos" :key="telf.id">
                     <th scope="row">{{ telf.id }}</th>
+                     <!-- <th scope="row">{{ telf.id }}</th> -->
                     <td>{{ telf.telefono }}</td>
                     <td>{{ telf.tipo_telefono }}</td>
                     <td>
                         <button
                             @click="
-                                modificar = true;
-                                abrirModal(telf);
+                                modificar=true;
+                                listarTelefonos(telf.id)
                             "
                             class="btn btn-primary"
                         >
@@ -41,18 +45,54 @@
 </template>
 <script>
 export default {
-    // name: "Task",
     data() {
         return {
-
+            //  persona: {
+            //     nombre: "",
+            //     apellido: "",
+            //     cedula: "",
+            //     correo: "",
+            //     // telefonos: [],
+            //     // telefonoTipo: "",
+            //     direccion: "",
+            //     sexo: "",
+            //     descripcion: "",
+            // },
+            telefono:{
+                id:null,
+                persona_id:"",
+                telefono:"",
+                tipo_telefono:"",
+            },
+            persona: [],
+            // telefonos: [],
         };
     },
     methods: {
+        // listarTelefonos() {
+        //     axios.get("/telefonos/"+this.persona_id).
+        //     then( response=> {
+        //             this.telefonos = response.data ;
+        //     });
+        // },
+        // mostrarTelefono(id){
+
+        //     axios.get("/telefonos/"+id).
+        //     then( response=> {
+        //           this.telefonos = response.data ;
+        //     });
+        // },
+    },
+    mounted() {
+        let vue=this;
+        // this.listar();
+        // this.mostrarTelefono();
     },
     props: {
-        telefonos:{
-            // type:array
-        }
+        telefonos: {
+            type:Array,
+        },
+
     }
 };
 </script>

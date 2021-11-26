@@ -8,6 +8,7 @@ use app\Models\Telefono;
 
 class Persona extends Model
 {
+    protected $table='personas';
     use HasFactory;
     protected $fillable=[
         'nombre',
@@ -19,7 +20,7 @@ class Persona extends Model
         'descripcion',
     ];
     //RELACION DE UNO A MUCHOS CON HASMANY
-    public function post(){
+    public function telefonos(){
         return $this -> hasMany('app\Models\Telefono');
     }
 }

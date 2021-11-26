@@ -87,9 +87,9 @@
                             </span>
                         </div>
                         <!-- TELEFONO -->
-                         <telefonos
-                             :telefonos="telefonos" >
-                        </telefonos>
+                         <telefonospersona
+                             :persona_id="this.persona.id" >
+                        </telefonospersona>
                         <!-- ------------DIRECCION------->
                         <div class="my-4">
                             <label for="direccion">Direccion</label>
@@ -184,24 +184,24 @@ export default {
                 apellido: "",
                 cedula: "",
                 correo: "",
-                // telefono: "",
+                // telefonos: [],
                 // telefonoTipo: "",
                 direccion: "",
                 sexo: "",
                 descripcion: "",
             },
-            telefono:{
-                id:null,
-                persona_id:"",
-                telefono:"",
-                tipo_telefono:"",
-            },
+            // telefono:{
+            //     id:null,
+            //     persona_id:"",
+            //     telefono:"",
+            //     tipo_telefono:"",
+            // },
             // id: 0,
             modificar: false,
             modal: 0,
             tituloModal: "",
-            personas: [],
             telefonos: [],
+            personas: [],
             errores: {},
         };
     },

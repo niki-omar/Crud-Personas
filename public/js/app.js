@@ -2271,24 +2271,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         apellido: "",
         cedula: "",
         correo: "",
-        // telefono: "",
+        // telefonos: [],
         // telefonoTipo: "",
         direccion: "",
         sexo: "",
         descripcion: ""
       },
-      telefono: {
-        id: null,
-        persona_id: "",
-        telefono: "",
-        tipo_telefono: ""
-      },
+      // telefono:{
+      //     id:null,
+      //     persona_id:"",
+      //     telefono:"",
+      //     tipo_telefono:"",
+      // },
       // id: 0,
       modificar: false,
       modal: 0,
       tituloModal: "",
-      personas: [],
       telefonos: [],
+      personas: [],
       errores: {}
     };
   },
@@ -2681,109 +2681,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   // name: "Task",
@@ -2799,7 +2696,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         // telefonoTipo: "",
         direccion: "",
         sexo: "",
-        descripcion: ""
+        descripcion: "",
+        telefonos: []
       },
       telefono: {
         id: null,
@@ -2812,7 +2710,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       modal: 0,
       tituloModal: "",
       // personas: [],
-      // telefonos: [],
       errores: {}
     };
   },
@@ -2822,24 +2719,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       axios.get("/personas").then(function (response) {
         _this.personas = response.data;
-      }); // this.telefonos = res.data;
-    },
-    listarTelefonos: function listarTelefonos() {
-      var _this2 = this;
-
-      axios.get("/telefonos").then(function (response) {
-        _this2.telefonos = response.data;
       });
     },
+    // listarTelefonos(id) {
+    //     axios.get("/telefonos/"+id).
+    //     then( response=> {
+    //           this.telefonos = response.data;
+    //     });
+    // },
     eliminar: function eliminar(id) {
-      var _this3 = this;
+      var _this2 = this;
 
       axios["delete"]("/personas/" + id).then(function (response) {
-        _this3.listar();
+        _this2.listar();
       });
     },
     guardar: function guardar() {
-      var _this4 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var res, _res;
@@ -2850,13 +2746,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.prev = 0;
 
-                if (!_this4.modificar) {
+                if (!_this3.modificar) {
                   _context.next = 7;
                   break;
                 }
 
                 _context.next = 4;
-                return axios.put("/personas/" + _this4.persona.id, _this4.persona);
+                return axios.put("/personas/" + _this3.persona.id, _this3.persona);
 
               case 4:
                 res = _context.sent;
@@ -2865,15 +2761,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 7:
                 _context.next = 9;
-                return axios.post("/personas", _this4.persona);
+                return axios.post("/personas", _this3.persona);
 
               case 9:
                 _res = _context.sent;
 
               case 10:
-                _this4.cerrarModal();
+                _this3.cerrarModal();
 
-                _this4.listar();
+                _this3.listar();
 
                 _context.next = 19;
                 break;
@@ -2884,7 +2780,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 console.log("Consola.log Catch");
 
                 if (_context.t0.response.data) {
-                  _this4.errores = _context.t0.response.data.errors;
+                  _this3.errores = _context.t0.response.data.errors;
                 }
 
                 console.log(_context.t0.response.data);
@@ -2896,6 +2792,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee, null, [[0, 14]]);
       }))();
+    },
+    listarTelefonos: function listarTelefonos(persona_id) {
+      var _this4 = this;
+
+      // console.log(`Entré a la funcion ${persona_id}`)
+      axios.get("/telefonos/" + persona_id).then(function (response) {
+        _this4.persona.telefonos = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    abrirModalTelefono: function abrirModalTelefono(data) {
+      // this.res = data.id,
+      // this.restel=data.telefono;
+      // console.log(this.res + this.restel +" - "+"desde Consola");
+      this.modal = 1;
+
+      if (this.modificar) {
+        this.tituloModal = "Modificar telefono";
+        this.persona.id = data.id;
+        this.persona.nombre = data.nombre;
+        this.persona.apellido = data.apellido;
+        this.persona.cedula = data.cedula;
+        this.persona.correo = data.correo; // this.telefono.persona_id=data.persona.id;
+
+        this.persona.direccion = data.direccion;
+        this.persona.sexo = data.sexo;
+        this.persona.descripcion = data.descripcion;
+        this.listarTelefonos(data.id);
+      } else {
+        this.id = 0;
+        this.tituloModal = "Agregar numero de telefono ";
+        this.persona.nombre = "";
+        this.persona.apellido = "";
+        this.persona.cedula = "";
+        this.persona.correo = ""; // this.telefono.telefono = "";
+        // this.telefono.telefonoTipo = "";
+
+        this.persona.direccion = "";
+        this.persona.sexo = "";
+        this.persona.descripcion = "";
+      }
     },
     abrirModal: function abrirModal(data) {
       // this.res = data.id,
@@ -2914,27 +2852,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.persona.direccion = data.direccion;
         this.persona.sexo = data.sexo;
         this.persona.descripcion = data.descripcion;
-      } else {
-        this.id = 0;
-        this.tituloModal = "Crear Usuario";
-        this.persona.nombre = "";
-        this.persona.apellido = "";
-        this.persona.cedula = "";
-        this.persona.correo = ""; // this.telefono.telefono = "";
-        // this.telefono.telefonoTipo = "";
+        this.listarTelefonos(data.id);
+      } //     else
+      //     {
+      //     this.id=0;
+      //     this.tituloModal = "Crear Usuario";
+      //     this.persona.nombre = "";
+      //     this.persona.apellido = "";
+      //     this.persona.cedula = "";
+      //     this.persona.correo = "";
+      //         // this.telefono.telefono = "";
+      //         // this.telefono.telefonoTipo = "";
+      //     this.persona.direccion = "";
+      //     this.persona.sexo = "";
+      //     this.persona.descripcion = "";
+      // }
 
-        this.persona.direccion = "";
-        this.persona.sexo = "";
-        this.persona.descripcion = "";
-      }
     },
     cerrarModal: function cerrarModal() {
       this.modal = 0;
     },
     mounted: function mounted() {
       var vue = this; // this.listar();
-
-      this.listarTelefonos();
+      // this.listarTelefonos();
     }
   },
   components: {
@@ -2942,7 +2882,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   // FUNCIONA PERO ESTA PARTE SE REFERENCIA DOS VECES DEBIDO A QUE TELEFONOS ESTA AGREGADO...
   props: {
-    telefonos: {},
+    // telefonos:{
+    // },
     personas: {}
   }
 });
@@ -3001,14 +2942,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  // name: "Task",
   data: function data() {
-    return {};
+    return {
+      //  persona: {
+      //     nombre: "",
+      //     apellido: "",
+      //     cedula: "",
+      //     correo: "",
+      //     // telefonos: [],
+      //     // telefonoTipo: "",
+      //     direccion: "",
+      //     sexo: "",
+      //     descripcion: "",
+      // },
+      telefono: {
+        id: null,
+        persona_id: "",
+        telefono: "",
+        tipo_telefono: ""
+      },
+      persona: [] // telefonos: [],
+
+    };
   },
-  methods: {},
+  methods: {// listarTelefonos() {
+    //     axios.get("/telefonos/"+this.persona_id).
+    //     then( response=> {
+    //             this.telefonos = response.data ;
+    //     });
+    // },
+    // mostrarTelefono(id){
+    //     axios.get("/telefonos/"+id).
+    //     then( response=> {
+    //           this.telefonos = response.data ;
+    //     });
+    // },
+  },
+  mounted: function mounted() {
+    var vue = this; // this.listar();
+    // this.mostrarTelefono();
+  },
   props: {
-    telefonos: {// type:array
+    telefonos: {
+      type: Array
     }
   }
 });
@@ -3041,7 +3022,7 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
 
 Vue.component('persona', (__webpack_require__(/*! ./components/Persona.vue */ "./resources/js/components/Persona.vue")["default"]));
 Vue.component('tablapersona', (__webpack_require__(/*! ./components/TablaPersona.vue */ "./resources/js/components/TablaPersona.vue")["default"]));
-Vue.component('telefonos', (__webpack_require__(/*! ./components/TelefonoPersona.vue */ "./resources/js/components/TelefonoPersona.vue")["default"]));
+Vue.component('telefonospersona', (__webpack_require__(/*! ./components/TelefonoPersona.vue */ "./resources/js/components/TelefonoPersona.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -40030,7 +40011,9 @@ var render = function () {
                     : _vm._e(),
                 ]),
                 _vm._v(" "),
-                _c("telefonos", { attrs: { telefonos: _vm.telefonos } }),
+                _c("telefonospersona", {
+                  attrs: { persona_id: this.persona.id },
+                }),
                 _vm._v(" "),
                 _c("div", { staticClass: "my-4" }, [
                   _c("label", { attrs: { for: "direccion" } }, [
@@ -40422,7 +40405,49 @@ var render = function () {
                   : _vm._e(),
               ]),
               _vm._v(" "),
-              _c("telefonos", { attrs: { telefonos: _vm.telefonos } }),
+              _c("div", { staticClass: "my-4" }, [
+                _c("label", { attrs: { for: "telefono" } }, [
+                  _vm._v("Telefono"),
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.persona.correo,
+                      expression: "persona.correo",
+                    },
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "email",
+                    id: "telefono",
+                    placeholder: "telefono",
+                  },
+                  domProps: { value: _vm.persona.correo },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.persona, "correo", $event.target.value)
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _vm.errores.telefono
+                  ? _c("span", { staticClass: "text-danger" }, [
+                      _vm._v(
+                        "\n                                El Correo es obligatorio\n                            "
+                      ),
+                    ])
+                  : _vm._e(),
+              ]),
+              _vm._v(" "),
+              _c("telefonospersona", {
+                attrs: { telefonos: this.persona.telefonos },
+              }),
               _vm._v(" "),
               _c("div", { staticClass: "my-4" }, [
                 _c("label", { attrs: { for: "direccion" } }, [
@@ -40619,8 +40644,6 @@ var render = function () {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(per.correo))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(per.telefono))]),
-            _vm._v(" "),
             _c("td", [_vm._v(_vm._s(per.direccion))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(per.sexo))]),
@@ -40639,7 +40662,33 @@ var render = function () {
                     },
                   },
                 },
-                [_c("i", { staticClass: "fas fa-edit" })]
+                [
+                  _vm._v(
+                    " Editar\n                                                    "
+                  ),
+                  _c("i", { staticClass: "fas fa-edit" }),
+                ]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  on: {
+                    click: function ($event) {
+                      _vm.modificar = true
+                      _vm.abrirModalTelefono(per)
+                    },
+                  },
+                },
+                [
+                  _vm._v(
+                    " Agregar\n                                                    "
+                  ),
+                  _c("i", { staticClass: "fas fa-phone" }),
+                ]
               ),
             ]),
             _vm._v(" "),
@@ -40654,7 +40703,12 @@ var render = function () {
                     },
                   },
                 },
-                [_c("i", { staticClass: "fas fa-trash-alt" })]
+                [
+                  _vm._v(
+                    " Eliminar\n                                                    "
+                  ),
+                  _c("i", { staticClass: "fas fa-trash-alt" }),
+                ]
               ),
             ]),
           ])
@@ -40681,8 +40735,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Correo")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Telefono")]),
-        _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Direccion")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Sexo")]),
@@ -40691,7 +40743,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c(
           "th",
-          { staticClass: "text-center", attrs: { scope: "col", colspan: "2" } },
+          { staticClass: "text-center", attrs: { scope: "col", colspan: "3" } },
           [_vm._v("Accion")]
         ),
       ]),
@@ -40727,7 +40779,7 @@ var render = function () {
       _c(
         "tbody",
         _vm._l(_vm.telefonos, function (telf) {
-          return _c("tr", { key: telf.persona_id }, [
+          return _c("tr", { key: telf.id }, [
             _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(telf.id))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(telf.telefono))]),
@@ -40742,7 +40794,7 @@ var render = function () {
                   on: {
                     click: function ($event) {
                       _vm.modificar = true
-                      _vm.abrirModal(telf)
+                      _vm.listarTelefonos(telf.id)
                     },
                   },
                 },

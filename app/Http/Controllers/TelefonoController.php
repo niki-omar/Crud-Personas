@@ -17,7 +17,6 @@ class TelefonoController extends Controller
     {
         return Telefono::get();
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -35,9 +34,12 @@ class TelefonoController extends Controller
      * @param  \App\Models\Telefono  $telefono
      * @return \Illuminate\Http\Response
      */
-    public function show(Telefono $telefono)
+    public function show($id)
     {
-        return $telefono;
+        $telefonos = Telefono::where('persona_id', $id)
+                    ->get()
+                    ->all();
+        return $telefonos;
     }
 
     /**

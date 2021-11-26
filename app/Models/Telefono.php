@@ -7,24 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Telefono extends Model
 {
-    use HasFactory;
-    protected $fillable=[
-        'persona_id',
-        'telefono',
-        'tipo_telefono'
-    ];
+    // use HasFactory;
+    // protected $fillable=[
+    //     'persona_id',
+    //     'telefono',
+    //     'tipo_telefono'
+    // ];
+        protected $table='telefonos';
     // RELACION UNO A MUCHOS INVERSA
     public function persona(){
         return $this->belongsTo('app\Models\Persona');
     }
 }
-// class Post extends Model
-// {
-//     /**
-//      * Get the comments for the blog post.
-//      */
-//     public function comments()
-//     {
-//         return $this->hasMany(Telefonos::class);
-//     }
-// }
+
