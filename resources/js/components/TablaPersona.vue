@@ -18,7 +18,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="my-4">
+                        <div class="my-2    ">
                             <label for="nombre">Nombre</label>
                             <input
                                 v-model="persona.nombre"
@@ -74,11 +74,11 @@
                             </span>
                         </div>
 
-                        <div class="my-4">
+                        <!-- <div class="my-4">
                             <label for="telefono">Telefono</label>
                             <input
-                                v-model="persona.correo"
-                                type="email"
+                                v-model="telefono.id"
+                                type="number"
                                 class="form-control"
                                 id="telefono"
                                 placeholder="telefono"
@@ -86,9 +86,12 @@
                             <span class="text-danger" v-if="errores.telefono">
                                 El Correo es obligatorio
                             </span>
-                        </div>
+                        </div> -->
                           <telefonospersona
-                             :telefonos="this.persona.telefonos" >
+                             :telefonos="this.persona.telefonos"
+                             
+                             >
+
                         </telefonospersona>
                         <!-- /TELEFONO -->
                         <div class="my-4">
@@ -363,7 +366,7 @@ export default {
                     // const res2 = await axios.put("/telefonos/" + this.persona_id,this.telefono);
                 }
                 else {
-                    const res = await axios.post("/personas", this.persona);
+                    // const res = await axios.post("/personas", this.persona);
                     //  const res2 = await axios.put("/telefonos/",this.telefono);
                 }
                 this.cerrarModal();
@@ -447,7 +450,7 @@ export default {
                 // this.persona.descripcion = "";
             // }
                 // this.telefono = "1234";
-            //  this.listarTelefonos(persona_id.id);
+
 
         },
         abrirModal(data) {

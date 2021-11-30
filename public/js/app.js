@@ -2743,6 +2743,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   // name: "Task",
@@ -2797,8 +2800,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var res, _res;
-
+        var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -2815,26 +2817,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 res = _context.sent;
-                _context.next = 10;
+                _context.next = 7;
                 break;
 
               case 7:
-                _context.next = 9;
-                return axios.post("/personas", _this3.persona);
-
-              case 9:
-                _res = _context.sent;
-
-              case 10:
                 _this3.cerrarModal();
 
                 _this3.listar();
 
-                _context.next = 19;
+                _context.next = 16;
                 break;
 
-              case 14:
-                _context.prev = 14;
+              case 11:
+                _context.prev = 11;
                 _context.t0 = _context["catch"](0);
                 console.log("Consola.log Catch");
 
@@ -2844,12 +2839,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 console.log(_context.t0.response.data);
 
-              case 19:
+              case 16:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 14]]);
+        }, _callee, null, [[0, 11]]);
       }))();
     },
     guardarTelefono: function guardarTelefono() {
@@ -2920,7 +2915,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       // this.persona.descripcion = "";
       // }
       // this.telefono = "1234";
-      //  this.listarTelefonos(persona_id.id);
 
     },
     abrirModal: function abrirModal(data) {
@@ -2988,6 +2982,86 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3053,30 +3127,149 @@ __webpack_require__.r(__webpack_exports__);
         telefono: "",
         tipo_telefono: ""
       },
-      persona: [] // telefonos: [],
+      modificar: true,
+      modal: 0,
+      tituloModal: "",
+      persona: [],
+      index: null // telefonos: [],
 
     };
   },
   methods: {
-    // FALTA QUE BORRE 
-    listar: function listar() {
+    // guardar(id) {
+    //     console.log(id);
+    //      if (this.modificar) {
+    //         // console.log("Entrando al metodo GuardarTelefono con su respectivo ID por persona: ");
+    //         // console.log(this.telefono.persona_id);
+    //         axios.put("/telefonos",this.telefono)
+    //         .then(function ({data}) {
+    //             console.log(data);
+    //         }).catch((err) => {
+    //             console.log(err);
+    //         });
+    //         this.cerrarModal();
+    //     }
+    // },
+    guardar: function guardar(id, index) {
       var _this = this;
 
-      axios.get("/personas").then(function (response) {
-        _this.personas = response.data;
-      });
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                console.log("Guardar Async : " + id);
+                _context.prev = 1;
+
+                if (!_this.modificar) {
+                  _context.next = 8;
+                  break;
+                }
+
+                _context.next = 5;
+                return axios.put("/telefonos/" + id, _this.telefono);
+
+              case 5:
+                res = _context.sent;
+                _context.next = 8;
+                break;
+
+              case 8:
+                _this.cerrarModal();
+
+                _this.listar();
+
+                _context.next = 17;
+                break;
+
+              case 12:
+                _context.prev = 12;
+                _context.t0 = _context["catch"](1);
+                console.log("Consola.log Catch");
+
+                if (_context.t0.response.data) {
+                  _this.errores = _context.t0.response.data.errors;
+                }
+
+                console.log(_context.t0.response.data);
+
+              case 17:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[1, 12]]);
+      }))();
     },
-    eliminar: function eliminar(id) {
+    // editarTelefono(data){
+    //     console.log(data);
+    // },
+    abrirModal: function abrirModal(data, index) {
+      console.log(data.telefono);
+      this.modal = 1;
+
+      if (this.modificar) {
+        this.index = index; // console.log(data.id);
+
+        this.tituloModal = "Editar Numero";
+        this.telefono.id = data.id;
+        this.telefono.persona_id = data.persona_id;
+        this.telefono.telefono = data.telefono;
+        this.telefono.tipo_telefono = data.tipo_telefono; // this.listarTelefonos(data.id);
+      } //     else
+      //     {
+      //     this.id=0;
+      //     this.tituloModal = "Crear Usuario";
+      //     this.persona.nombre = "";
+      //     this.persona.apellido = "";
+      //     this.persona.cedula = "";
+      //     this.persona.correo = "";
+      //         // this.telefono.telefono = "";
+      //         // this.telefono.telefonoTipo = "";
+      //     this.persona.direccion = "";
+      //     this.persona.sexo = "";
+      //     this.persona.descripcion = "";
+      // }
+
+    },
+    listar: function listar() {
       var _this2 = this;
 
-      axios["delete"]("/personas/" + id).then(function (response) {
-        _this2.listar();
+      axios.get("/telefonos/" + this.telefono.persona_id, this.telefono).then(function (response) {
+        _this2.telefonos = response.data;
+      });
+    },
+    cerrarModal: function cerrarModal() {
+      this.modal = 0;
+    },
+    // listarTelefonos(persona_id) {
+    //     // console.log(persona_id);
+    //     // console.log(`Entré a la funcion ${persona_id}`)
+    //     axios.get("/telefonos/"+persona_id).
+    //     then( response=> {
+    //             this.persona.telefonos = response.data ;
+    //             // this.telefonos = response.data;
+    //     }).catch(error => {
+    //         console.log(error)
+    //     });
+    // },
+    eliminar: function eliminar(id, index) {
+      var _this3 = this;
+
+      axios["delete"]("/telefonos/" + id).then(function (response) {
+        // console.log("1: "+this.listarTelefonos(id));
+        //   console.log(data);
+        //  this.listar();
+        _this3.telefonos.splice(index, 1); // this.id=telefonos.splice(id)
+        // console.log(id);
+
       });
     }
   },
   mounted: function mounted() {
     var vue = this; // this.listar();
-    // this.mostrarTelefono();
+    // this.listarTelefonos();
   },
   props: {
     telefonos: {
@@ -7577,7 +7770,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* p.tipoTelf{\n    text-align: center;\n} */\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* p.tipoTelf{\n    text-align: center;\n} */\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -40417,7 +40610,7 @@ var render = function () {
             "div",
             { staticClass: "modal-body" },
             [
-              _c("div", { staticClass: "my-4" }, [
+              _c("div", { staticClass: "my-2    " }, [
                 _c("label", { attrs: { for: "nombre" } }, [_vm._v("Nombre")]),
                 _vm._v(" "),
                 _c("input", {
@@ -40557,46 +40750,6 @@ var render = function () {
                 }),
                 _vm._v(" "),
                 _vm.errores.correo
-                  ? _c("span", { staticClass: "text-danger" }, [
-                      _vm._v(
-                        "\n                                El Correo es obligatorio\n                            "
-                      ),
-                    ])
-                  : _vm._e(),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "my-4" }, [
-                _c("label", { attrs: { for: "telefono" } }, [
-                  _vm._v("Telefono"),
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.persona.correo,
-                      expression: "persona.correo",
-                    },
-                  ],
-                  staticClass: "form-control",
-                  attrs: {
-                    type: "email",
-                    id: "telefono",
-                    placeholder: "telefono",
-                  },
-                  domProps: { value: _vm.persona.correo },
-                  on: {
-                    input: function ($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.persona, "correo", $event.target.value)
-                    },
-                  },
-                }),
-                _vm._v(" "),
-                _vm.errores.telefono
                   ? _c("span", { staticClass: "text-danger" }, [
                       _vm._v(
                         "\n                                El Correo es obligatorio\n                            "
@@ -41095,10 +41248,8 @@ var render = function () {
       _vm._v(" "),
       _c(
         "tbody",
-        _vm._l(_vm.telefonos, function (telf) {
+        _vm._l(_vm.telefonos, function (telf, index) {
           return _c("tr", { key: telf.id }, [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(telf.id))]),
-            _vm._v(" "),
             _c("td", [_vm._v(_vm._s(telf.telefono))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(telf.tipo_telefono))]),
@@ -41111,7 +41262,7 @@ var render = function () {
                   on: {
                     click: function ($event) {
                       _vm.modificar = true
-                      _vm.listarTelefonos(telf.id)
+                      _vm.abrirModal(telf, index)
                     },
                   },
                 },
@@ -41126,7 +41277,7 @@ var render = function () {
                   staticClass: "btn btn-danger",
                   on: {
                     click: function ($event) {
-                      return _vm.eliminar(telf.id)
+                      return _vm.eliminar(telf.id, index)
                     },
                   },
                 },
@@ -41138,6 +41289,153 @@ var render = function () {
         0
       ),
     ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal", class: { mostrar: _vm.modal } }, [
+      _c("div", { staticClass: "modal-dialog modal-dialog-scrollable" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _c("div", { staticClass: "modal-header" }, [
+            _c("h4", { staticClass: "modal-title" }, [
+              _vm._v(_vm._s(_vm.tituloModal) + " "),
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                attrs: { type: "button", "data-dismiss": "modal" },
+                on: {
+                  click: function ($event) {
+                    return _vm.cerrarModal()
+                  },
+                },
+              },
+              [
+                _vm._v(
+                  "\n                            ×\n                        "
+                ),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", {}, [
+              _c("label", [_vm._v("Numero")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.telefono.telefono,
+                    expression: "telefono.telefono",
+                  },
+                ],
+                staticClass: "form-control my-2",
+                attrs: {
+                  type: "number",
+                  id: "telefono",
+                  placeholder: "telefono",
+                },
+                domProps: { value: _vm.telefono.telefono },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.telefono, "telefono", $event.target.value)
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("p", { attrs: { for: "tipoTelefono" } }, [
+                _vm._v("Tipo de telefono"),
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.telefono.tipo_telefono,
+                    expression: "telefono.tipo_telefono",
+                  },
+                ],
+                attrs: { type: "radio", id: "one", value: "M" },
+                domProps: { checked: _vm._q(_vm.telefono.tipo_telefono, "M") },
+                on: {
+                  change: function ($event) {
+                    return _vm.$set(_vm.telefono, "tipo_telefono", "M")
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "one" } }, [_vm._v("Movil")]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.telefono.tipo_telefono,
+                    expression: "telefono.tipo_telefono",
+                  },
+                ],
+                attrs: { type: "radio", id: "two", value: "C" },
+                domProps: { checked: _vm._q(_vm.telefono.tipo_telefono, "C") },
+                on: {
+                  change: function ($event) {
+                    return _vm.$set(_vm.telefono, "tipo_telefono", "C")
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "two" } }, [_vm._v("Convencional")]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success",
+                  attrs: { type: "button", "data-dismiss": "modal" },
+                  on: {
+                    click: function ($event) {
+                      _vm.guardar(_vm.telefono.id, _vm.index)
+                      _vm.modificar = true
+                    },
+                  },
+                },
+                [
+                  _vm._v(
+                    "\n                            Guardar\n                        "
+                  ),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary",
+                  attrs: { type: "button", "data-dismiss": "modal" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.cerrarModal()
+                    },
+                  },
+                },
+                [
+                  _vm._v(
+                    "\n                            Cancelar\n                        "
+                  ),
+                ]
+              ),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
   ])
 }
 var staticRenderFns = [
@@ -41147,8 +41445,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "table-dark" }, [
       _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
-        _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Telefono")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Tipo de Telefono")]),
