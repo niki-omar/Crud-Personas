@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Telefono;
 use Illuminate\Http\Request;
-// use app\Htpp\Requests\PersonaRequest;
-use \app\Http\Requests\PersonaRequest;
 class TelefonoController extends Controller
 {
     /**
@@ -25,7 +23,13 @@ class TelefonoController extends Controller
      */
     public function store(Request $request)
     {
-
+        $request ->validate([
+            'telefono'=>'required',
+            'tipo_telefono'=>'required',
+        ]);
+        $telefono= new Telefono;
+        $telefono -> create($request ->all());
+        // return $request;
     }
 
     /**
@@ -50,13 +54,13 @@ class TelefonoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Telefono $telefono)
-    {  //borrando PersonaRequest y dejando solo Request el codigo funciona
+    {
         $telefono -> update($request ->all());
     }
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Persona  $persona
+     * @param  \App\Models\Telefono  $telefono
      * @return \Illuminate\Http\Response
      */
     public function destroy(Telefono $telefono)

@@ -7,12 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Telefono extends Model
 {
-    // use HasFactory;
-    // protected $fillable=[
-    //     'persona_id',
-    //     'telefono',
-    //     'tipo_telefono'
-    // ];
+    protected $fillable=[
+        'persona_id',
+        'telefono',
+        'tipo_telefono'
+    ];
         protected $table='telefonos';
     // RELACION UNO A MUCHOS INVERSA
     public function persona(){

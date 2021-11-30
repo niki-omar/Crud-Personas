@@ -2,6 +2,7 @@
 <div>
     <!-- MODAL -->
     <div class="modal" :class="{ mostrar: modal }">
+
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
 
@@ -167,10 +168,12 @@
     </div>
     <div class="modal" :class="{ mostrar: modalTelefono }">
             <div class="modal-dialog modal-dialog-scrollable">
+
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h4 class="modal-title">{{ tituloModal }}</h4>
+                        <h4 class="modal-title">{{ tituloModal }} </h4>
+                        <!-- <input v-model="persona.nombre"> -->
                         <button
                             @click="cerrarModal()"
                             type="button"
@@ -182,10 +185,12 @@
                     </div>
                     <div class="modal-body">
                         <div class="my-4">
+                            <!-- <tr v-for="per in personas" :key="per.id"></tr> -->
+                            <!-- <input v-model="personas.nombre"> -->
                             <label for="telefono">¿Deseas agregar un nuevo Numero de telefono?</label>
                             <input
                                 v-model="telefono.telefono"
-                                type="email"
+                                type="number"
                                 class="form-control my-4"
                                 id="telefono"
                                 placeholder="telefono"
@@ -208,7 +213,7 @@
                             <label for="two">Convencional</label>
 
                             <span class="text-danger" v-if="errores.telefono">
-                                El Correo es obligatorio
+                                El telefono es obligatorio
                             </span>
                         </div>
 
@@ -216,6 +221,7 @@
                     </div>
                     <div class="modal-footer">
                         <button
+
                             type="button"
                             class="btn btn-success"
                             data-dismiss="modal"
@@ -278,7 +284,8 @@
                                             <button
                                                     @click="
                                                     modificar=true;
-                                                    abrirModalTelefono(per.id)
+
+                                                    abrirModalTelefono(per.id,per.nombre,per)
                                                     "
                                                     class="btn btn-primary"
                                                 > Agregar
@@ -317,7 +324,6 @@ export default {
                 telefonos: [],
             },
             telefono:{
-                id:null,
                 persona_id:"",
                 telefono:"",
                 tipo_telefono:"",
@@ -327,7 +333,6 @@ export default {
             modal: 0,
             modalTelefono:0,
             tituloModal: "",
-            // personas: [],
             errores: {},
         };
     },
@@ -351,24 +356,6 @@ export default {
             })
 
         },
-        async guardarTelefono() {
-            try{
-                if(this.modificar){
-                    axios.post("/telefonos/").
-                    then(response=>{
-                        this.telefono
-                    });
-                    this.cerrarModal();
-                    this.listar();
-                }
-                } catch(error){
-                    console.log("Consola.log Catch");
-                    if (error.response.data) {
-                        this.errores = error.response.data.errors;
-                    }
-                    console.log(error.response.data);
-                }
-        },
        async guardar() {
             try {
                 if (this.modificar) {
@@ -382,35 +369,6 @@ export default {
                 this.cerrarModal();
                 this.listar();
             }
-            // try {
-            //     // console.log(this.persona.id);
-            //     if (this.modificar) {
-            //         //  const res = await axios.put("/personas/" + this.id, this.persona);
-            //         const res = await axios.put("/personas/" + this.persona.id,this.persona);
-            //     }
-            //     else {
-            //         const res = await axios.post("/personas", this.persona);
-            //     }
-            //     this.cerrarModal();
-            //     this.listar();
-            // }
-            // try {
-            //     if (this.modificar) {
-            //     axios.put
-            //         then(response=>{
-            //             ("/personas/" + this.id, this.persona);
-            //         });
-            //     }
-            //     else {
-            //         axios.post
-            //         then(response=>{
-            //             ("/personas", this.persona);
-            //         })
-            //         // const res = await axios.post("/personas", this.persona);
-            //     }
-            //     this.cerrarModal();
-            //     this.listar();
-            // }
             catch (error) {
                 console.log("Consola.log Catch");
                 if (error.response.data) {
@@ -419,10 +377,39 @@ export default {
                 console.log(error.response.data);
             }
         },
+         guardarTelefono() {
+             if (this.modificar) {
+                // console.log("Entrando al metodo GuardarTelefono con su respectivo ID por persona: ");
+                // console.log(this.telefono.persona_id);
+                axios.post("/telefonos",this.telefono)
+                .then(function ({data}) {
+                    console.log(data);
+                }).catch((err) => {
+                    console.log(err);
+                });
+                this.listar();
+                this.cerrarModal();
+            }
+            //         //  axios.post
+            // //         then(response=>{
+            // //             ("/personas", this.persona);
+            // //         })
+            //         //  const res = await axios.post("/telefonos/" + this.id,this.telefonos);
+            //         // const res = await axios.put("/telefonos/" + this.telefono.id,this.telefono);
+            //         // const res2 = await axios.put("/telefonos/" + this.persona_id,this.telefono);
+            //     }
+            //     else {
+            //         // const res = await axios.post("/telefonos", this.telefono);
+            //         //  const res2 = await axios.put("/telefonos/",this.telefono);
+            //     }
+            //     this.cerrarModal();
+            //     this.listar();
 
+        },
         listarTelefonos(persona_id) {
             // console.log(persona_id);
             // console.log(`Entré a la funcion ${persona_id}`)
+
             axios.get("/telefonos/"+persona_id).
             then( response=> {
                     this.persona.telefonos = response.data ;
@@ -431,14 +418,40 @@ export default {
             });
 
         },
-        abrirModalTelefono(persona_id) {
+        abrirModalTelefono(persona_id,nombre) {
                 console.log(persona_id);
+                console.log(nombre);
+                //  this.guardarTelefono(persona_id);
+                this.telefono.persona_id=persona_id;
+                // console.log( this.persona.nombre=data.nombre);
                 this.modalTelefono = 1;
+                if(this.modificar){
+                this.tituloModal="Bienvenido de vuelta " + nombre;
+                // this.persona.nombre=data. nombre;
+                this.telefono.telefono = "";
+                this.telefono.tipo_telefono = "";
+                }
+                // this.guardarTelefono(persona_id);
+                // else
+                // {
+                // this.id=0;
+                // this.tituloModal = "Crear Usuario";
+                // this.persona.nombre = "";
+                // this.persona.apellido = "";
+                // this.persona.cedula = "";
+                // this.persona.correo = "";
+                //     // this.telefono.telefono = "";
+                //     // this.telefono.telefonoTipo = "";
+                // this.persona.direccion = "";
+                // this.persona.sexo = "";
+                // this.persona.descripcion = "";
+            // }
                 // this.telefono = "1234";
             //  this.listarTelefonos(persona_id.id);
 
         },
         abrirModal(data) {
+            console.log(data);
             this.modal = 1;
             if(this.modificar){
                 this.tituloModal="Editar Usuario";
@@ -448,12 +461,10 @@ export default {
                 this.persona.cedula=data.cedula;
                 this.persona.correo=data.correo;
                 // this.telefono.persona_id=data.persona.id;
-
                 this.persona.direccion=data.direccion;
                 this.persona.sexo=data.sexo;
                 this.persona.descripcion =data.descripcion;
                 this.listarTelefonos(data.id);
-
                 }
             //     else
             //     {

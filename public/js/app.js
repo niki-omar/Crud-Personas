@@ -2736,6 +2736,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   // name: "Task",
@@ -2753,7 +2760,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         telefonos: []
       },
       telefono: {
-        id: null,
         persona_id: "",
         telefono: "",
         tipo_telefono: ""
@@ -2763,7 +2769,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       modal: 0,
       modalTelefono: 0,
       tituloModal: "",
-      // personas: [],
       errores: {}
     };
   },
@@ -2788,118 +2793,138 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this2.listar();
       });
     },
-    guardarTelefono: function guardarTelefono() {
+    guardar: function guardar() {
       var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var res, _res;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                try {
-                  if (_this3.modificar) {
-                    axios.post("/telefonos/").then(function (response) {
-                      _this3.telefono;
-                    });
+                _context.prev = 0;
 
-                    _this3.cerrarModal();
-
-                    _this3.listar();
-                  }
-                } catch (error) {
-                  console.log("Consola.log Catch");
-
-                  if (error.response.data) {
-                    _this3.errores = error.response.data.errors;
-                  }
-
-                  console.log(error.response.data);
+                if (!_this3.modificar) {
+                  _context.next = 7;
+                  break;
                 }
 
-              case 1:
+                _context.next = 4;
+                return axios.put("/personas/" + _this3.persona.id, _this3.persona);
+
+              case 4:
+                res = _context.sent;
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.next = 9;
+                return axios.post("/personas", _this3.persona);
+
+              case 9:
+                _res = _context.sent;
+
+              case 10:
+                _this3.cerrarModal();
+
+                _this3.listar();
+
+                _context.next = 19;
+                break;
+
+              case 14:
+                _context.prev = 14;
+                _context.t0 = _context["catch"](0);
+                console.log("Consola.log Catch");
+
+                if (_context.t0.response.data) {
+                  _this3.errores = _context.t0.response.data.errors;
+                }
+
+                console.log(_context.t0.response.data);
+
+              case 19:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
+        }, _callee, null, [[0, 14]]);
       }))();
     },
-    guardar: function guardar() {
-      var _this4 = this;
+    guardarTelefono: function guardarTelefono() {
+      if (this.modificar) {
+        // console.log("Entrando al metodo GuardarTelefono con su respectivo ID por persona: ");
+        // console.log(this.telefono.persona_id);
+        axios.post("/telefonos", this.telefono).then(function (_ref) {
+          var data = _ref.data;
+          console.log(data);
+        })["catch"](function (err) {
+          console.log(err);
+        });
+        this.listar();
+        this.cerrarModal();
+      } //         //  axios.post
+      // //         then(response=>{
+      // //             ("/personas", this.persona);
+      // //         })
+      //         //  const res = await axios.post("/telefonos/" + this.id,this.telefonos);
+      //         // const res = await axios.put("/telefonos/" + this.telefono.id,this.telefono);
+      //         // const res2 = await axios.put("/telefonos/" + this.persona_id,this.telefono);
+      //     }
+      //     else {
+      //         // const res = await axios.post("/telefonos", this.telefono);
+      //         //  const res2 = await axios.put("/telefonos/",this.telefono);
+      //     }
+      //     this.cerrarModal();
+      //     this.listar();
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var res, _res;
-
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.prev = 0;
-
-                if (!_this4.modificar) {
-                  _context2.next = 7;
-                  break;
-                }
-
-                _context2.next = 4;
-                return axios.put("/personas/" + _this4.persona.id, _this4.persona);
-
-              case 4:
-                res = _context2.sent;
-                _context2.next = 10;
-                break;
-
-              case 7:
-                _context2.next = 9;
-                return axios.post("/personas", _this4.persona);
-
-              case 9:
-                _res = _context2.sent;
-
-              case 10:
-                _this4.cerrarModal();
-
-                _this4.listar();
-
-                _context2.next = 19;
-                break;
-
-              case 14:
-                _context2.prev = 14;
-                _context2.t0 = _context2["catch"](0);
-                console.log("Consola.log Catch");
-
-                if (_context2.t0.response.data) {
-                  _this4.errores = _context2.t0.response.data.errors;
-                }
-
-                console.log(_context2.t0.response.data);
-
-              case 19:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, null, [[0, 14]]);
-      }))();
     },
     listarTelefonos: function listarTelefonos(persona_id) {
-      var _this5 = this;
+      var _this4 = this;
 
       // console.log(persona_id);
       // console.log(`Entré a la funcion ${persona_id}`)
       axios.get("/telefonos/" + persona_id).then(function (response) {
-        _this5.persona.telefonos = response.data;
+        _this4.persona.telefonos = response.data;
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    abrirModalTelefono: function abrirModalTelefono(persona_id) {
+    abrirModalTelefono: function abrirModalTelefono(persona_id, nombre) {
       console.log(persona_id);
-      this.modalTelefono = 1; // this.telefono = "1234";
+      console.log(nombre); //  this.guardarTelefono(persona_id);
+
+      this.telefono.persona_id = persona_id; // console.log( this.persona.nombre=data.nombre);
+
+      this.modalTelefono = 1;
+
+      if (this.modificar) {
+        this.tituloModal = "Bienvenido de vuelta " + nombre; // this.persona.nombre=data. nombre;
+
+        this.telefono.telefono = "";
+        this.telefono.tipo_telefono = "";
+      } // this.guardarTelefono(persona_id);
+      // else
+      // {
+      // this.id=0;
+      // this.tituloModal = "Crear Usuario";
+      // this.persona.nombre = "";
+      // this.persona.apellido = "";
+      // this.persona.cedula = "";
+      // this.persona.correo = "";
+      //     // this.telefono.telefono = "";
+      //     // this.telefono.telefonoTipo = "";
+      // this.persona.direccion = "";
+      // this.persona.sexo = "";
+      // this.persona.descripcion = "";
+      // }
+      // this.telefono = "1234";
       //  this.listarTelefonos(persona_id.id);
+
     },
     abrirModal: function abrirModal(data) {
+      console.log(data);
       this.modal = 1;
 
       if (this.modificar) {
@@ -3032,18 +3057,22 @@ __webpack_require__.r(__webpack_exports__);
 
     };
   },
-  methods: {// listarTelefonos() {
-    //     axios.get("/telefonos/"+this.persona_id).
-    //     then( response=> {
-    //             this.telefonos = response.data ;
-    //     });
-    // },
-    // mostrarTelefono(id){
-    //     axios.get("/telefonos/"+id).
-    //     then( response=> {
-    //           this.telefonos = response.data ;
-    //     });
-    // },
+  methods: {
+    // FALTA QUE BORRE 
+    listar: function listar() {
+      var _this = this;
+
+      axios.get("/personas").then(function (response) {
+        _this.personas = response.data;
+      });
+    },
+    eliminar: function eliminar(id) {
+      var _this2 = this;
+
+      axios["delete"]("/personas/" + id).then(function (response) {
+        _this2.listar();
+      });
+    }
   },
   mounted: function mounted() {
     var vue = this; // this.listar();
@@ -7548,7 +7577,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* p.tipoTelf{\n    text-align: center;\n} */\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* p.tipoTelf{\n    text-align: center;\n} */\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -40763,7 +40792,7 @@ var render = function () {
         _c("div", { staticClass: "modal-content" }, [
           _c("div", { staticClass: "modal-header" }, [
             _c("h4", { staticClass: "modal-title" }, [
-              _vm._v(_vm._s(_vm.tituloModal)),
+              _vm._v(_vm._s(_vm.tituloModal) + " "),
             ]),
             _vm._v(" "),
             _c(
@@ -40802,7 +40831,7 @@ var render = function () {
                 ],
                 staticClass: "form-control my-4",
                 attrs: {
-                  type: "email",
+                  type: "number",
                   id: "telefono",
                   placeholder: "telefono",
                 },
@@ -40866,7 +40895,7 @@ var render = function () {
               _vm.errores.telefono
                 ? _c("span", { staticClass: "text-danger" }, [
                     _vm._v(
-                      "\n                                El Correo es obligatorio\n                            "
+                      "\n                                El telefono es obligatorio\n                            "
                     ),
                   ])
                 : _vm._e(),
@@ -40966,7 +40995,8 @@ var render = function () {
                   on: {
                     click: function ($event) {
                       _vm.modificar = true
-                      _vm.abrirModalTelefono(per.id)
+
+                      _vm.abrirModalTelefono(per.id, per.nombre, per)
                     },
                   },
                 },

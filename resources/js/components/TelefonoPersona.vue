@@ -69,19 +69,21 @@ export default {
         };
     },
     methods: {
-        // listarTelefonos() {
-        //     axios.get("/telefonos/"+this.persona_id).
-        //     then( response=> {
-        //             this.telefonos = response.data ;
-        //     });
-        // },
-        // mostrarTelefono(id){
+        // FALTA QUE BORRE 
+         listar() {
+           axios.get("/personas").
+           then( response =>{
+                this.personas = response.data;
+           });
+        },
+         eliminar(id) {
+            axios.delete("/personas/" + id).
+            then(response=>{
+                 this.listar();
 
-        //     axios.get("/telefonos/"+id).
-        //     then( response=> {
-        //           this.telefonos = response.data ;
-        //     });
-        // },
+            })
+
+        },
     },
     mounted() {
         let vue=this;
