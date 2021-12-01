@@ -60,6 +60,8 @@ class TelefonoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     *
+     * 
      * @param  \App\Models\Telefono  $telefono
      * @return \Illuminate\Http\Response
      */

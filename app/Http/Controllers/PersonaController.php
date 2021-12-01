@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Persona;
+use App\Models\Persona;use App\Models\Telefono;
 use Illuminate\Http\Request;
 // use app\Htpp\Requests\PersonaRequest;
 use \app\Http\Requests\PersonaRequest;
@@ -74,6 +74,15 @@ class PersonaController extends Controller
      */
     public function destroy(Persona $persona)
     {
+        $this->borrarTelefono($persona->id);
+        // return $persona;
         $persona->delete();
+
+        // return $persona->;
+        // $this->borrarTelefono(persona_id);
+    }
+    public function borrarTelefono($persona_id){
+        $telefonos = Telefono::where('persona_id', $persona_id)
+        ->delete();
     }
 }

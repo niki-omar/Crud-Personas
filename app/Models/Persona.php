@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use app\Models\Telefono;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Persona extends Model
 {

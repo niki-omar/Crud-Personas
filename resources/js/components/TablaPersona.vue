@@ -89,9 +89,8 @@
                         </div> -->
                           <telefonospersona
                              :telefonos="this.persona.telefonos"
-                             
-                             >
 
+                             >
                         </telefonospersona>
                         <!-- /TELEFONO -->
                         <div class="my-4">
@@ -346,13 +345,11 @@ export default {
                 this.personas = response.data;
            });
         },
-        // listarTelefonos(id) {
-        //     axios.get("/telefonos/"+id).
-        //     then( response=> {
-        //           this.telefonos = response.data;
-        //     });
-        // },
         eliminar(id) {
+            // axios.delete("/telefonos/" + id).
+            // then(response=>{
+
+            // }),
             axios.delete("/personas/" + id).
             then(response=>{
                  this.listar();
